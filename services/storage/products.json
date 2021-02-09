@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Refactoring",
+        "author": "Martin Fowler",
+        "quantity": 10,
+        "price": 79.92,
+        "photo": "/img/refactoring.png"
+    },
+    {
+        "name": "Engenharia De Software Moderna",
+        "author": "Marco Tulio Valente",
+        "quantity": 10,
+        "price": 65.9,
+        "photo": "/img/esm.png"
+    },
+    {
+        "name": "Design Patterns",
+        "author": "Erich Gamma, John Vlissides, Richard Helm, Ralph Johnson",
+        "quantity": 10,
+        "price": 67.99,
+        "photo": "/img/design.png"
+    }
+]

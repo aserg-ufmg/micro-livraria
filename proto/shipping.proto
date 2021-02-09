@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service ShippingService {
+    rpc Get(ShippingPayload) returns (ShippingResponse) {}
+}
+
+message ShippingPayload {
+    string cep = 1;
+}
+
+message ShippingResponse {
+    float value = 1;
+}

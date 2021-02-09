@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service StorageService {
+    rpc Products(Empty) returns (ProductsResponse) {}
+}
+
+message Empty{}
+
+message Product {
+    string name = 1;
+    int32 quantity = 2;
+    float price = 3;
+    string photo = 4;
+    string author = 5;
+}
+
+message ProductsResponse {
+    repeated Product products = 1;
+}
