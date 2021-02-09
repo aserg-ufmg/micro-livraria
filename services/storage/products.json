@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Refactoring",
         "author": "Martin Fowler",
         "quantity": 10,
@@ -7,6 +8,7 @@
         "photo": "/img/refactoring.png"
     },
     {
+        "id": 2,
         "name": "Engenharia De Software Moderna",
         "author": "Marco Tulio Valente",
         "quantity": 10,
@@ -14,6 +16,7 @@
         "photo": "/img/esm.png"
     },
     {
+        "id": 3,
         "name": "Design Patterns",
         "author": "Erich Gamma, John Vlissides, Richard Helm, Ralph Johnson",
         "quantity": 10,

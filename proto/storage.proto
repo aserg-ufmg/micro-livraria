@@ -7,11 +7,12 @@ service StorageService {
 message Empty{}
 
 message Product {
-    string name = 1;
-    int32 quantity = 2;
-    float price = 3;
-    string photo = 4;
-    string author = 5;
+    int32 id = 1;
+    string name = 2;
+    int32 quantity = 3;
+    float price = 4;
+    string photo = 5;
+    string author = 6;
 }
 
 message ProductsResponse {
