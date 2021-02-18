@@ -10,9 +10,9 @@ Como nosso objetivo é apenas didático, estão à venda apenas três livros. Al
 
 Esse documento inclui:
 
-* Uma descrição básica do sistema, com foco na sua arquitetura
-* Instruções detalhadas para sua execução local, usando para isso o código que já está implementamos e disponibilizamos neste repositório
-* Duas tarefas práticas, envolvendo a implementação de uma nova operação em um dos microsserviços e a criação de containers dockers para facilitar a execucção deles.
+* Uma descrição do sistema, com foco na sua arquitetura
+* Instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos neste repositório
+* Duas tarefas práticas, que requerem a implementação de uma nova operação em um dos microsserviços e a criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
