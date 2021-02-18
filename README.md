@@ -1,6 +1,6 @@
 # Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microserviços
 
-Exemplo simples de uma livraria virtual utilizando uma arquitetura de microserviços.
+Exemplo simples de uma livraria virtual utilizando uma arquitetura de microsserviços.
 
 ## Dependências
 
@@ -26,6 +26,7 @@ A próxima figura mostra a interface Web da livraria.
 ![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 
+## Protocolos de Comunicação
 
 Cada um dos serviços expõe suas APIs em diferentes portas:
 
