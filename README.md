@@ -37,7 +37,9 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 
 ## Executando o Sistema:
 
-A seguir vamos descrever a sequência de passos para você executar o sistema (você deve seguir esses passos cuidadosamente antes de implementar as tarefas práticas descritas nas próximas seções):
+A seguir vamos descrever a sequência de passos para você executar o sistema localmente em sua máquina. Ou seja, todos os microsserviços estarão rodando na sua máquina.
+
+**IMPORTANTE:** Você deve seguir esses passos cuidadosamente antes de implementar as tarefas práticas descritas nas próximas seções.
 
 1. Clone o projeto para o seu computador:
 
@@ -49,7 +51,7 @@ git clone https://github.com/aserg-ufmg/livraria-microservice.git
 2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
 
 
-3. Abra o diretório onde o projeto foi clonado em um terminal e instale as dependências necessárias para execução dos microsserviços:
+3. Abra o diretório no qual o projeto foi clonado em um terminal e instale as dependências necessárias para execução dos microsserviços:
 
 ```
 cd livraria-microservice
@@ -62,7 +64,7 @@ npm install
 npm run start
 ```
 
-5.  Apenas para fins de teste, efetue uma requisição através de um dos seguintes comandos:
+5.  Para fins de teste, efetue uma requisição para o microsserviço reponsáve pela API do backend.
  
 * Se tiver o `curl` instalado na sua máquina, basta usar:
 
@@ -72,21 +74,25 @@ curl -i -X GET http://localhost:3000/products
 
 * Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
 
+
 6. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
+ 
  
 ## Tarefa Prática #1: Implementando uma nova operação
 
-Agora, nós iremos implementar uma nova operação no serviço `Storage`. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. 
+Nesta primeira tarefa, você deve implementar uma nova operação no serviço `Storage`. Essa operação vai pesquisar por um produto, dado o seu ID.
 
-1. Primeiro, você deve então adicionar a assinatura da operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição dessa assiantura no arquivo `proto`:
+Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. 
+
+1. Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assiantura no arquivo `proto`:
 
 ```proto
 rpc Product(Payload) returns (ProductResponse) {}
 ```
 
-Com isso, em outras palavras, você está definindo que `Storage` vai responder a uma nova requisição, chamada `Product`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`. 
+Em outras palavras, você está definindo que o microsserviço `Storage` vai responder a uma nova requisição, chamada `Product`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`. 
 
-2. Implemente também a definição do objeto `Payload` que contém o ID do produto desejado.
+2. Declare também o tipo do objeto `Payload` que apenas contém o ID do produto a ser pesquisado.
 
 ```proto
 message Payload {
@@ -94,7 +100,7 @@ message Payload {
 }
 ```
 
-Veja que `ProductResponse` já está definido mais abaixo no arquivo `proto`:
+Veja que `ProductResponse` já está declarado mais abaixo no arquivo `proto`:
 
 ```proto
 message ProductsResponse {
