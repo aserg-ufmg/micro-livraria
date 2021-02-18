@@ -72,15 +72,21 @@ curl -i -X GET http://localhost:3000/products
 
 * Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
 
-6. Teste agora a instalação, acessando o serviço de front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades do sitema.
+6. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
  
-7. Agora, nós iremos implementar uma nova operação no serviço Storage. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. Mais especificamente, nós vamos adicionar uma operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição da função no arquivo indicado anteriormente:
+## Tarefa Prática #1: Implementando uma nova operação
+
+Agora, nós iremos implementar uma nova operação no serviço `Storage`. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. 
+
+1. Primeiro, você deve então adicionar a assinatura da operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição dessa assiantura no arquivo `proto`:
 
 ```proto
 rpc Product(Payload) returns (ProductResponse) {}
 ```
 
-8. Implemente também a definição do novo objeto `Payload` que contém o ID do produto desejado:
+Com isso, em outras palavras, você está definindo que `Storage` vai responder a uma nova requisição, chamada `Product`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`. 
+
+2. Implemente também a definição do objeto `Payload` que contém o ID do produto desejado.
 
 ```proto
 message Payload {
@@ -88,7 +94,15 @@ message Payload {
 }
 ```
 
-9. Agora vamos implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para a buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+Veja que `ProductResponse` já está definido mais abaixo no arquivo `proto`:
+
+```proto
+message ProductsResponse {
+    repeated Product products = 1;
+}
+```
+
+3. Agora você deve implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
     product: (payload, callback) => {
@@ -99,7 +113,7 @@ message Payload {
     },
 ```
 
-10. Para finalizar, iremos integrar a nova função definida pelo serviço em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
+4. Para finalizar, iremos integrar a nova função definida pelo serviço em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
 
 ```js
 app.get('/product/:id', (req, res, next) => {
@@ -107,7 +121,7 @@ app.get('/product/:id', (req, res, next) => {
 });
 ```
 
-11. Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
+5. Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
 
 ```js
  storage.Product({ id: req.params.id }, (err, product) => {
@@ -115,4 +129,6 @@ app.get('/product/:id', (req, res, next) => {
  });
 ```
 
-12. Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
+6. Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
+
+**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
