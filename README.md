@@ -8,12 +8,14 @@ Exemplo simples de uma livraria virtual utilizando uma arquitetura de microsserv
 
 ## Arquitetura
 
-O sistema possui quatro microsserviços: 
+O nosso sistema de exemplo -- Livraria ASERG/DCC/UFMG -- possui quatro microsserviços: 
 
-* Front-end: interface com usuário
+* Front-end: interface com usuário (veja na figura abaixo)
 * API: responsável por intermediar a comunicação entre o front-end e o backend do sistema
 * Shipping: serviços para cálculo de frete
 * Inventory: serviço para controle do estoque da livraria  
+
+![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
@@ -23,7 +25,6 @@ A comunicação entre o front-end e a API usa REST. Já a comunicação entre a 
 
 A próxima figura mostra a interface Web da livraria.
 
-![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 
 ## Protocolos de Comunicação
