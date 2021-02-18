@@ -1,6 +1,6 @@
 # Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microserviços
 
-Exemplo simples de uma livraria virtual utilizando uma arquitetura de microsserviços.
+Esse repositório contem um exemplo simples de uma livraria virtual construída usando uma arquitetura de microsserviços.
 
 A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) calcular o frete de um produto; (2) comprar um produto.
 
@@ -11,7 +11,7 @@ Como seu objetivo é apenas didático, estão à venda apenas três livros. Alé
 
 ## Arquitetura
 
-O nosso sistema de exemplo -- Livraria ASERG/DCC/UFMG -- possui quatro microsserviços: 
+O sistema possui quatro microsserviços: 
 
 * Front-end: interface com usuário (veja na figura abaixo)
 * API: responsável por intermediar a comunicação entre o front-end e o backend do sistema
