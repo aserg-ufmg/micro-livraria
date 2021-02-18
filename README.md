@@ -1,20 +1,27 @@
-# Livraria ASERG/UFMG - Exemplo de Microserviço
+# Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microserviços
 
-Simples exemplo de livraria utilizando arquitetura de microserviços
+Exemplo simples de uma livraria virtual utilizando uma arquitetura de microserviços.
 
 ![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 ## Requisitos
 
--   Node 14+ - https://nodejs.org/en/download/
+-   Node.js 14+ - https://nodejs.org/en/download/
 
 ## Arquitetura
 
-O projeto é composto por quatro serviços: Front-end, API, Shipping e Storage. Os comandos dos usuários são recebidos no serviço de Front-end que é responsável por identificar a operaço desejada e comunicar as ações do usuário para a API em formato JSON. O Serviço de API, por sua vez, é responsável por integrar os dois microseriços que tratam as lógicas de frete (Shipping Service) e estoque (Storage Service). A comunicação entre a API e os microserviços são mantidas por meio de chamadas de procedimento remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
+O sistema possui quatro microsserviços: 
+
+* Front-end: interface com usuário
+* API: responsável por intermediar a comunicação entre o front-end e o backend do sistema
+* Shipping: serviços para cálculo de frete
+* Inventory: serviço para controle do estoque da livraria  
+
+A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
 ![image](https://user-images.githubusercontent.com/7620947/108298485-cbdb6000-717b-11eb-9d3e-257a08b597bf.png)
 
-Cada um dos serivos expões suas APIs em diferentes portas:
+Cada um dos serviços expõe suas APIs em diferentes portas:
 
 - **API**: HTTP/3000
 - **Shipping**: TCP/3001
