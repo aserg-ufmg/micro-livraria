@@ -10,7 +10,7 @@ Simples exemplo de livraria utilizando arquitetura de microserviços
 
 ## Arquitetura
 
-O projeto é composto por quatro serviços: Front-end, API, Shipping e Storage. Os comandos dos usuários são recebidos no serviço de Front-end que é responsável por identificar a operaço desejada e comunicar as ações do usuário para a API em formato JSON. O Serviço de API, por sua vez, é responsável por integrar os dois microseriços que tratam as lógicas de frete (Shipping Service) e estoque (Storage Service). A comunicação entre a API e os micro serviços são mantidas por meio de chamadas de procedimento remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
+O projeto é composto por quatro serviços: Front-end, API, Shipping e Storage. Os comandos dos usuários são recebidos no serviço de Front-end que é responsável por identificar a operaço desejada e comunicar as ações do usuário para a API em formato JSON. O Serviço de API, por sua vez, é responsável por integrar os dois microseriços que tratam as lógicas de frete (Shipping Service) e estoque (Storage Service). A comunicação entre a API e os microserviços são mantidas por meio de chamadas de procedimento remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
 ![image](https://user-images.githubusercontent.com/7620947/108298485-cbdb6000-717b-11eb-9d3e-257a08b597bf.png)
 
@@ -21,7 +21,7 @@ Cada um dos serivos expões suas APIs em diferentes portas:
 - **Storage**: TCP/3002
 - **Front-end**: HTTP/5000
 
-Cada micro serviço possui um arquivo Proto que define as operações fornecidas, assim como a estrutura dos objetos de entrada e saída. O exemplo apresentado abaixo, mostra a assinatura do serviço de frete, onde a função `Get` recebe como parâmetro um objeto contendo o CEP e retorna outro objeto com o valor do custo de envio.
+Cada microserviço possui um arquivo `.proto` que define as operações fornecidas, assim como a estrutura dos objetos de entrada e saída. O exemplo apresentado abaixo, mostra a assinatura do serviço de frete, onde a função `Get` recebe como parâmetro um objeto contendo o CEP e retorna outro objeto com o valor do custo de envio.
 
 ![image](https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png)
 
@@ -72,7 +72,7 @@ message Payload {
 }
 ```
 
-8 - Agora será necessário implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para a buscar o produto pelo ID pode ser utilizada a função `find` do JavaScript:
+8 - Agora será necessário implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para a buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
     product: (payload, callback) => {
@@ -91,7 +91,7 @@ app.get('/product/:id', (req, res, next) => {
 });
 ```
 
-10 - Similar ao `/products`, agora inclua a chmada para o método definido no micro serviço, desta vez iremos passar um parâmetro com o ID do produto:
+10 - Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
 
 ```js
  storage.Product({ id: req.params.id }, (err, product) => {
