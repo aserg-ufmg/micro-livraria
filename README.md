@@ -18,7 +18,7 @@ O sistema possui quatro microsserviços:
 * Shipping: serviços para cálculo de frete
 * Inventory: serviço para controle do estoque da livraria  
 
-Os quatro microsserviços estão implementados em JavaScript e usam o Node.js para XXX.
+Os quatro microsserviços serão implementados em JavaScript, usando o Node.js para XXX.
 
 ## Protocolo de Comunicação
 
@@ -107,6 +107,19 @@ Veja que `ProductResponse` -- isto é, o tipo de retorno da operação -- já es
 ```proto
 message ProductsResponse {
     repeated Product products = 1;
+}
+```
+
+Ou seja, a resposta da nossa requisição conterá um único campo, do tipo `Product`, que também já está implementando no mesmo arquivo:
+
+```proto
+message Product {
+    int32 id = 1;
+    string name = 2;
+    int32 quantity = 3;
+    float price = 4;
+    string photo = 5;
+    string author = 6;
 }
 ```
 
