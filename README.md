@@ -2,9 +2,12 @@
 
 Exemplo simples de uma livraria virtual utilizando uma arquitetura de microsserviços.
 
-## Dependências
+A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) calcular o frete de um produto; (2) comprar um produto.
 
--   Node.js 14+ - https://nodejs.org/en/download/
+Como seu objetivo é apenas didático, estão à venda apenas tr%es livros. Além disso, a operação de compra apenas XXXX.
+
+![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
+
 
 ## Arquitetura
 
@@ -15,19 +18,10 @@ O nosso sistema de exemplo -- Livraria ASERG/DCC/UFMG -- possui quatro microsser
 * Shipping: serviços para cálculo de frete
 * Inventory: serviço para controle do estoque da livraria  
 
-![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
 ![image](https://user-images.githubusercontent.com/7620947/108298485-cbdb6000-717b-11eb-9d3e-257a08b597bf.png)
-
-## Interface com o Usuário
-
-A próxima figura mostra a interface Web da livraria.
-
-
-
-## Protocolos de Comunicação
 
 Cada um dos serviços expõe suas APIs em diferentes portas:
 
@@ -40,6 +34,9 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 
 ![image](https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png)
 
+## Dependências
+
+-   Node.js 14+ - https://nodejs.org/en/download/
 
 ## Atividades
 
