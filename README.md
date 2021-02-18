@@ -34,9 +34,6 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 
 ![image](https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png)
 
-## Dependências
-
--   Node.js 14+ - https://nodejs.org/en/download/
 
 ## Atividades
 
