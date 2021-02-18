@@ -35,9 +35,9 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 ![image](https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png)
 
 
-## Atividades
+## Executando o Sistema:
 
-A seguir vamos descrever a sequência de passos para você executar o sistema:
+A seguir vamos descrever a sequência de passos para você executar o sistema (você deve seguir esses passos cuidadosamente antes de implementar as tarefas práticas descritas nas próximas seções):
 
 1. Clone o projeto para o seu computador:
 
