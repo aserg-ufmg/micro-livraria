@@ -2,9 +2,7 @@
 
 Exemplo simples de uma livraria virtual utilizando uma arquitetura de microserviços.
 
-![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
-
-## Requisitos
+## Dependências
 
 -   Node.js 14+ - https://nodejs.org/en/download/
 
@@ -20,6 +18,14 @@ O sistema possui quatro microsserviços:
 A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
 ![image](https://user-images.githubusercontent.com/7620947/108298485-cbdb6000-717b-11eb-9d3e-257a08b597bf.png)
+
+## Interface com o Usuário
+
+A próxima figura mostra a interface Web da livraria.
+
+![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
+
+
 
 Cada um dos serviços expõe suas APIs em diferentes portas:
 
