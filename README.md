@@ -4,30 +4,34 @@ Esse repositório contem um exemplo simples de uma livraria virtual construída 
 
 A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) calcular o frete de um produto; (2) comprar um produto.
 
-Como nosso objetivo é apenas didático, estão à venda apenas três livros. Além disso, a operação de compra apenas XXXX.
+Como nosso objetivo é didático, estão à venda apenas três livros. Além disso, a operação de compra apenas XXXX.
 
 ![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
 Esse documento inclui:
 
-* Uma descrição do sistema, com foco na sua arquitetura
-* Instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos neste repositório
-* Duas tarefas práticas, que requerem a implementação de uma nova operação em um dos microsserviços e a criação de containers Docker para facilitar a execução dos microsserviços.
+* Uma descrição do sistema, com foco na sua arquitetura.
+* Instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos neste repositório.
+* Duas tarefas práticas, requerendo: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
-O sistema possui quatro microsserviços: 
+A Livraria ASERG/DCC/UFMG (nosso sistema) possui quatro microsserviços: 
 
-* Front-end: interface com usuário (veja na figura abaixo).
-* API: responsável por intermediar a comunicação entre o front-end e o backend do sistema.
+* Front-end: interface com usuário
+* API: responsável por intermediar a comunicação entre o front-end e o backend do sistema (formado pelos próximos dois microsserviços).
 * Shipping: serviços para cálculo de frete.
-* Inventory: serviço para controle do estoque da livraria.  
+* Inventory: serviços para controle do estoque da livraria.  
 
-Os quatro microsserviços estão implementados em JavaScript, usando o Node.js para XXX. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca teve experiência com JS. O motivo é que o nosso roteiro vai incluir os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
+Os quatro microsserviços estão implementados em JavaScript, usando o Node.js para XXX. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca programou em JS. O motivo é que o nosso roteiro inclui os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
 
 ## Protocolo de Comunicação
 
-A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
+A comunicação entre o front-end e o backend usa uma API REST, como é comum no caso de sistemas Web.
+
+Já a comunicação entre a API e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente (isto é, como se tais funções fossem locais). Para viabilizar essa transparência, gRPC usa dois conceitos centrais: uma linguagem para definição de interfaces e um protocolo para troca de mensagens entre aplicações clientes e servidoras. Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou o nome de **Protocol Buffer**. 
+
+Veja então a seguir um diagrama que mostra os microsserviços de nossa livraria e os protocolos que eles usam para se comunicarem:
 
 ![image](https://user-images.githubusercontent.com/7620947/108298485-cbdb6000-717b-11eb-9d3e-257a08b597bf.png)
 
