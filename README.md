@@ -4,7 +4,7 @@ Exemplo simples de uma livraria virtual utilizando uma arquitetura de microsserv
 
 A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) calcular o frete de um produto; (2) comprar um produto.
 
-Como seu objetivo é apenas didático, estão à venda apenas tr%es livros. Além disso, a operação de compra apenas XXXX.
+Como seu objetivo é apenas didático, estão à venda apenas três livros. Além disso, a operação de compra apenas XXXX.
 
 ![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
@@ -40,43 +40,49 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 
 ## Atividades
 
-1 - Clone o projeto para o seu computador, utilizando o Git:
+A seguir vamos descrever a sequência de passos para você executar o sistema:
+
+1. Clone o projeto para o seu computador:
 
 ```
 git clone https://github.com/aserg-ufmg/livraria-microservice.git
 ```
 
-2 - Abra o diretório onde o o proejto foi salvo através do terminal e instale as dependências necessárias para execução dos serviços:
 
-**Atenção:** Necessário possuir o [Node](https://nodejs.org/en/download/) instalado na sua máquina
+2. É necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/)
+
+3. Abra o diretório onde o projeto foi clonado em terminal e instale as dependências necessárias para execução dos microsserviços:
+
 ```
 cd livraria-microservice
 npm install
 ```
 
-3 - Inicie os serviços através do comando:
+4. Inicie os microsserviços através do comando:
 
 ```
 npm run start
 ```
 
-4 - Efetue uma requisição através do terminal com o comando `curl` para constatar o funcionamento dos serviços:
+5.  Apenas para fins de teste, efetue uma requisição através de um dos seguintes comandos:
+ 
+* Se tiver o `curl` instalado na sua máquina, basta usar:
 
 ```
 curl -i -X GET http://localhost:3000/products
 ```
 
-*Caso não possua o comando `curl` instalado, verifique o funcionamento acessando a url `http://localhost:3000/products` em seu navegador.
+* Caso contrário, você pode verificar o funcionamento acessando a url `http://localhost:3000/products` em seu navegador.
 
-5 - Finalize a instalação, acessando o serviço de Front-end http://localhost:5000 e verifique o funcionamento das partes integradas.
-
-6 - Agora, nós iremos incluir uma nova operação ao serviço Storage. Assim como apresentado anteriormente, as operações fornecidas são definidas em um arquivo proto, localizado na pasta `proto/storage.proto`. Nós iremos incluir uma operação para consultar um produto pelo ID. Desta forma, inclua a definição da função no arquivo indicado anteriormente:
+6. Teste agora a instalação, acessando o serviço de front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades do sitema.
+ 
+7. - Agora, nós iremos implementar uma nova operação no serviço Storage. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. Mais especificamente, nós vamos adicionar uma operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição da função no arquivo indicado anteriormente:
 
 ```proto
 rpc Product(Payload) returns (ProductResponse) {}
 ```
 
-7 - Inclua também a definição do novo objeto `Payload` que contém o ID do produto desejado:
+8. Implemente também a definição do novo objeto `Payload` que contém o ID do produto desejado:
 
 ```proto
 message Payload {
@@ -84,7 +90,7 @@ message Payload {
 }
 ```
 
-8 - Agora será necessário implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para a buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+9. Agora vamos implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para a buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
     product: (payload, callback) => {
@@ -95,7 +101,7 @@ message Payload {
     },
 ```
 
-9 - Para finalizar, iremos integrar a nova função definida pelo serviço em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
+10. Para finalizar, iremos integrar a nova função definida pelo serviço em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
 
 ```js
 app.get('/product/:id', (req, res, next) => {
@@ -103,7 +109,7 @@ app.get('/product/:id', (req, res, next) => {
 });
 ```
 
-10 - Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
+11. Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
 
 ```js
  storage.Product({ id: req.params.id }, (err, product) => {
@@ -111,4 +117,4 @@ app.get('/product/:id', (req, res, next) => {
  });
 ```
 
-11 - Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
+12. Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
