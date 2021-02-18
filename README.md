@@ -18,6 +18,9 @@ O sistema possui quatro microsserviços:
 * Shipping: serviços para cálculo de frete
 * Inventory: serviço para controle do estoque da livraria  
 
+Os quatro microsserviços estão implementados em JavaScript e usam o Node.js para XXX.
+
+## Protocolo de Comunicação
 
 A comunicação entre o front-end e a API usa REST. Já a comunicação entre a API e os microserviços usa chamadas de procedimentos remoto (RPCs) utilizando Protobuf, que é sitentizada pelo protocolo [gRPC](https://grpc.io/). 
 
@@ -35,7 +38,7 @@ Cada microserviço possui um arquivo `.proto` que define as operações fornecid
 ![image](https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png)
 
 
-## Executando o Sistema:
+## Executando o Sistema
 
 A seguir vamos descrever a sequência de passos para você executar o sistema localmente em sua máquina. Ou seja, todos os microsserviços estarão rodando na sua máquina.
 
@@ -78,7 +81,7 @@ curl -i -X GET http://localhost:3000/products
 6. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
  
  
-## Tarefa Prática #1: Implementando uma nova operação
+## Tarefa Prática #1: Implementando uma Nova Operação
 
 Nesta primeira tarefa, você deve implementar uma nova operação no serviço `Storage`. Essa operação vai pesquisar por um produto, dado o seu ID.
 
@@ -92,15 +95,14 @@ rpc Product(Payload) returns (ProductResponse) {}
 
 Em outras palavras, você está definindo que o microsserviço `Storage` vai responder a uma nova requisição, chamada `Product`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`. 
 
-2. Declare também o tipo do objeto `Payload` que apenas contém o ID do produto a ser pesquisado.
+2. Declare também o tipo do objeto `Payload`, o qual apenas contém o ID do produto a ser pesquisado.
 
 ```proto
 message Payload {
     int32 id = 1;
 }
 ```
-
-Veja que `ProductResponse` já está declarado mais abaixo no arquivo `proto`:
+Veja que `ProductResponse` -- isto é, o tipo de retorno da operação -- já está declarado mais abaixo no arquivo `proto`:
 
 ```proto
 message ProductsResponse {
@@ -108,7 +110,9 @@ message ProductsResponse {
 }
 ```
 
-3. Agora você deve implementar a função `Product` no arquivo `services/storage/index.js`. Para isso, é necessário incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+3. Agora você deve implementar a função `Product` no arquivo `services/storage/index.js`. Reforçando, no passo anterior, apenas declarando a assinatura dessa função. Então, agora, vamos prover uma implementação para essa assinatura.
+ 
+Para implementar a funcao `Product`, basta incluir um novo campo no objeto que define as operações junto ao comando `server.addService`. Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
     product: (payload, callback) => {
@@ -119,7 +123,7 @@ message ProductsResponse {
     },
 ```
 
-4. Para finalizar, iremos integrar a nova função definida pelo serviço em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
+4. Para finalizar, temos que incuir a função `Product` em nossa API. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
 
 ```js
 app.get('/product/:id', (req, res, next) => {
