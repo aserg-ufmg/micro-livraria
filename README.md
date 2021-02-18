@@ -18,7 +18,7 @@ O sistema possui quatro microsserviços:
 * Shipping: serviços para cálculo de frete
 * Inventory: serviço para controle do estoque da livraria  
 
-Os quatro microsserviços serão implementados em JavaScript, usando o Node.js para XXX.
+Os quatro microsserviços serão implementados em JavaScript, usando o Node.js para XXX. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca teve experiência com JS. O motivo é que o nosso roteiro vai incluir os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
 
 ## Protocolo de Comunicação
 
