@@ -1,24 +1,29 @@
 # Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microsserviços
 
-Esse repositório contem um exemplo simples de uma livraria virtual construída usando uma arquitetura de microsserviços.
+Esse repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
 A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) calcular o frete de um produto; (2) comprar um produto.
 
-Como seu objetivo é apenas didático, estão à venda apenas três livros. Além disso, a operação de compra apenas XXXX.
+Como nosso objetivo é apenas didático, estão à venda apenas três livros. Além disso, a operação de compra apenas XXXX.
 
 ![image](https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png)
 
+Esse documento inclui:
+
+* Uma descrição básica do sistema, com foco na sua arquitetura
+* Instruções detalhadas para sua execução local, usando para isso o código que já está armazenado neste repositório
+* Duas tarefas práticas, envolvendo a implementação de uma nova operação em um dos microsserviços e a criação de containers dockers para facilitar a execucção deles.
 
 ## Arquitetura
 
 O sistema possui quatro microsserviços: 
 
-* Front-end: interface com usuário (veja na figura abaixo)
-* API: responsável por intermediar a comunicação entre o front-end e o backend do sistema
-* Shipping: serviços para cálculo de frete
-* Inventory: serviço para controle do estoque da livraria  
+* Front-end: interface com usuário (veja na figura abaixo).
+* API: responsável por intermediar a comunicação entre o front-end e o backend do sistema.
+* Shipping: serviços para cálculo de frete.
+* Inventory: serviço para controle do estoque da livraria.  
 
-Os quatro microsserviços serão implementados em JavaScript, usando o Node.js para XXX. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca teve experiência com JS. O motivo é que o nosso roteiro vai incluir os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
+Os quatro microsserviços estão implementados em JavaScript, usando o Node.js para XXX. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca teve experiência com JS. O motivo é que o nosso roteiro vai incluir os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
 
 ## Protocolo de Comunicação
 
