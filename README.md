@@ -46,9 +46,10 @@ git clone https://github.com/aserg-ufmg/livraria-microservice.git
 ```
 
 
-2. É necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/)
+2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
 
-3. Abra o diretório onde o projeto foi clonado em terminal e instale as dependências necessárias para execução dos microsserviços:
+
+3. Abra o diretório onde o projeto foi clonado em um terminal e instale as dependências necessárias para execução dos microsserviços:
 
 ```
 cd livraria-microservice
@@ -69,7 +70,7 @@ npm run start
 curl -i -X GET http://localhost:3000/products
 ```
 
-* Caso contrário, você pode verificar o funcionamento acessando a url `http://localhost:3000/products` em seu navegador.
+* Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
 
 6. Teste agora a instalação, acessando o serviço de front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades do sitema.
  
