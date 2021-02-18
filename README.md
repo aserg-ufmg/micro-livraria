@@ -1,4 +1,4 @@
-# Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microserviços
+# Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microsserviços
 
 Esse repositório contem um exemplo simples de uma livraria virtual construída usando uma arquitetura de microsserviços.
 
