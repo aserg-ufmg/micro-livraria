@@ -76,7 +76,7 @@ curl -i -X GET http://localhost:3000/products
 
 6. Teste agora a instalação, acessando o serviço de front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades do sitema.
  
-7. - Agora, nós iremos implementar uma nova operação no serviço Storage. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. Mais especificamente, nós vamos adicionar uma operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição da função no arquivo indicado anteriormente:
+7. Agora, nós iremos implementar uma nova operação no serviço Storage. Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/storage.proto`. Mais especificamente, nós vamos adicionar uma operação para pesquisar um produto pelo seu ID. Desta forma, inclua a definição da função no arquivo indicado anteriormente:
 
 ```proto
 rpc Product(Payload) returns (ProductResponse) {}
