@@ -33,7 +33,7 @@ Já a comunicação entre o Controller e os microsserviços do back-end usa [gRP
 
 > Protocol Buffer = linguagem para definição de interfaces + protocolo para definição das mensagens trocadas entre aplicações clientes e servidoras
 
-Veja então a seguir um diagrama que mostra os microsserviços de nossa livraria e os protocolos que eles usam para se comunicarem:
+Veja a seguir um diagrama que mostra os microsserviços de nossa livraria e os protocolos que eles usam para se comunicarem:
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108454750-bc2b4c80-724b-11eb-82e5-717b8b5c5a88.png" />
