@@ -194,4 +194,11 @@ inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
 
 Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
 
+Ou seja: apenas implementamos a nova operação no backend. A sua incorporação no frontend ficará pendente, pois isso iria requer mudar a nossa interface, para por exemplo incluir um novo botão "Pesquisar".
+
+
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
+
+# Créditos
+
+Esse exercício prático foi elaborado por Rodrigo Brito, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, sob orientação do Prof. Marco Tulio Valente.
