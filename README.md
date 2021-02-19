@@ -107,15 +107,18 @@ Nesta primeira tarefa, você irá implementar uma nova operação no serviço `I
 
 Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, no caso [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
-1. Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assiantura no arquivo `proto`:
+1. Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assinatura no referido arquivo `proto` (na linha logo após a assinatura da função `SearchAllProducts`):
 
 ```proto
-rpc SearchProductByID(Payload) returns (ProductResponse) {}
+service InventoryService {
+    rpc SearchAllProducts(Empty) returns (ProductsResponse) {}
+    rpc SearchProductByID(Payload) returns (ProductResponse) {}
+}
 ```
 
 Em outras palavras, você está definindo que o microsserviço `Inventory` vai responder a uma nova requisição, chamada `SearchProductByID`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`.
 
-2. Declare também o tipo do objeto `Payload`, o qual apenas contém o ID do produto a ser pesquisado.
+2. Inclua também no mesmo arquivo a declaração do tipo do objeto `Payload`, o qual apenas contém o ID do produto a ser pesquisado.
 
 ```proto
 message Payload {
@@ -144,9 +147,9 @@ message Product {
 }
 ```
 
-3. Agora você deve implementar a função `SearchProductByID` no arquivo `services/inventory/index.js`. Reforçando, no passo anterior, apenas declarando a assinatura dessa função. Então, agora, vamos prover uma implementação para essa assinatura.
+3. Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
 
-Para implementá-la, basta incluir uma nova função via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID` . Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+Para isso, basta incluir uma nova função via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID` . Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
     searchProductByID: (payload, callback) => {
