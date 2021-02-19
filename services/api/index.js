@@ -1,16 +1,16 @@
 const express = require('express');
 const shipping = require('./shipping');
-const storage = require('./storage');
+const inventory = require('./inventory');
 const cors = require('cors');
 
 const app = express();
 app.use(cors());
 
 /**
- * Retorna a lista de produtos da loja via StorageService
+ * Retorna a lista de produtos da loja via InventoryService
  */
 app.get('/products', (req, res, next) => {
-    storage.Products(null, (err, data) => {
+    inventory.Products(null, (err, data) => {
         if (err) {
             console.error(err);
             res.status(500).send({ error: 'something failed :(' });

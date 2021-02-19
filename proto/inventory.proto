@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service StorageService {
+service InventoryService {
     rpc Products(Empty) returns (ProductsResponse) {}
 }
 

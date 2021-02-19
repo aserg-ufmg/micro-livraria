@@ -4,10 +4,10 @@
     "description": "Toy example of microservice",
     "main": "",
     "scripts": {
-        "start": "run-p start-frontend start-api start-shipping start-storage",
+        "start": "run-p start-frontend start-api start-shipping start-inventory",
         "start-api": "nodemon services/api/index.js",
         "start-shipping": "nodemon services/shipping/index.js",
-        "start-storage": "nodemon services/storage/index.js",
+        "start-inventory": "nodemon services/inventory/index.js",
         "start-frontend": "serve services/frontend"
     },
     "repository": {
