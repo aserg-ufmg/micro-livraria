@@ -155,7 +155,7 @@ message Product {
 
 Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
 
-Para isso, basta incluir uma nova função no objeto servervia parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID`. 
+Para isso, basta incluir uma nova função no objeto `server`via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID`. 
 
 ```js
     searchProductByID: (payload, callback) => {
@@ -168,7 +168,7 @@ Para isso, basta incluir uma nova função no objeto servervia parâmetro do com
 
 A função acima usa o método `find` para pesquisar em `products` pelo xxx. Veja que:
 
-*  `payload` é o parâmetro de entrada do nosso serviço, definido antes no arquivo .proto. Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta usar `payload.request.id`.
+*  `payload` é o parâmetro de entrada do nosso serviço, conforme definido antes no arquivo .proto (passo 2). Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta escrever `payload.request.id`.
 * `product` é xxx  
 * [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
 
@@ -180,7 +180,9 @@ Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Contro
 app.get('/product/:id', (req, res, next) => {});
 ```
 
-5. Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
+#### Passo 5:
+
+Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
 
 ```js
 inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
@@ -188,6 +190,8 @@ inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
 });
 ```
 
-6. Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
+#### Passo 6:
+
+Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
