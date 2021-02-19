@@ -19,13 +19,13 @@ No restante deste documento vamos:
 A Livraria ASERG/DCC/UFMG (nosso sistema) possui quatro microsserviços: 
 
 * Front-end: microsserviço responsável pela interface com usuário, conforme mostrado na figura anterior.
-* Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema (formado pelos próximos dois microsserviços).
+* Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema.
 * Shipping: microserviço para cálculo de frete.
 * Inventory: microserviço para controle do estoque da livraria.  
 
-Os quatro microsserviços estão implementados em JavaScript, usando o Node.js para execução dos serviços no back-end. No entanto, você conseguirá completar as tarefas práticas mesmo se nunca programou em JS. O motivo é que o nosso roteiro inclui os trechos de código que devem ser implementados, bem como instruções para cópia deles para o sistema.
+Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end. No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
 
-## Protocolo de Comunicação
+## Protocolos de Comunicação
 
 A comunicação entre o front-end e o backend (Controller) usa uma API REST, como é comum no caso de sistemas Web.
 
