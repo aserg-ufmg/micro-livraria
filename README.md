@@ -1,20 +1,18 @@
-# Livraria ASERG/DCC/UFMG - Exemplo e Exercício Prático de Microsserviços
+# Livraria ASERG/DCC/UFMG - Exercício Prático sobre Microsserviços
 
-Esse repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
+Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. O exemplo foi projetado para ser usado em uma **aula prática** sobre microsserviços. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
 
-A próxima figura mostra a interface Web do sistema. Por meio dessa interface, os clientes podem realizar duas operações: (1) listar os produtos; (2) calcular o frete de envio.
-
-Como nosso objetivo é didático, estão à venda apenas três livros. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque.
+Como nosso objetivo é totalmente didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png" />
 </p>
 
-Esse documento inclui:
+No restante deste documento vamos:
 
-* Uma descrição do sistema, com foco na sua arquitetura.
-* Instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos neste repositório.
-* Duas tarefas práticas, requerendo: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
+* Descrever oo sistema, com foco na sua arquitetura.
+* Apresentar instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos no repositório.
+* Propor e descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
