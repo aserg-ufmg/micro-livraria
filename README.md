@@ -2,7 +2,7 @@
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. O exemplo foi projetado para ser usado em uma **aula prática** sobre microsserviços. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
 
-Como nosso objetivo é totalmente didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
+Como nosso objetivo é totalmente didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png" />
