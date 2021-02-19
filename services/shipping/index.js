@@ -14,7 +14,7 @@ const server = new grpc.Server();
 
 // implementa os métodos do ShippingService
 server.addService(shippingProto.ShippingService.service, {
-    get: (_, callback) => {
+    getShippingRate: (_, callback) => {
         const shippingValue = Math.random() * 100 + 1; // Random value from R$1 to R$100
 
         callback(null, {

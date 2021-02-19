@@ -15,7 +15,7 @@ const server = new grpc.Server();
 
 // implementa os métodos do InventoryService
 server.addService(inventoryProto.InventoryService.service, {
-    products: (_, callback) => {
+    searchAllProducts: (_, callback) => {
         callback(null, {
             products: products,
         });
