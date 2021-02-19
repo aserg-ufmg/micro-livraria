@@ -29,13 +29,20 @@ Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.
 
 No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
 
-Para facilitar a execução e entendimento do sistema, também não usamos nenhum banco de dados ou outros serviços externo.
+Para facilitar a execução e entendimento do sistema, também não usamos bancos de dados ou serviços externos.
 
 ## Protocolos de Comunicação
 
-A comunicação entre o front-end e o backend (Controller) usa uma API REST, como é comum no caso de sistemas Web.
+A comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web.
 
-Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente (isto é, como se tais funções fossem locais). Para viabilizar essa transparência, gRPC usa dois conceitos centrais: uma linguagem para definição de interfaces e um protocolo para troca de mensagens entre aplicações clientes e servidoras. Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou o nome de **Protocol Buffer**. Ou seja, podemos dizer que:
+Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente, isto é, como se tais funções fossem locais). 
+
+Para viabilizar essa transparência, gRPC usa dois conceitos centrais: 
+
+* uma linguagem para definição de interfaces 
+* um protocolo para troca de mensagens entre aplicações clientes e servidoras. 
+
+Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou o nome de **Protocol Buffer**. Ou seja, podemos dizer que:
 
 > Protocol Buffer = linguagem para definição de interfaces + protocolo para definição das mensagens trocadas entre aplicações clientes e servidoras
 
