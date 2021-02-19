@@ -10,7 +10,7 @@ Como nosso objetivo é totalmente didático, na livraria virtual estão à venda
 
 No restante deste documento vamos:
 
-* Descrever oo sistema, com foco na sua arquitetura.
+* Descrever o sistema, com foco na sua arquitetura.
 * Apresentar instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos no repositório.
 * Propor e descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
 
