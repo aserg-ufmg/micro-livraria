@@ -1,4 +1,4 @@
-# Livraria ASERG/DCC/UFMG - Exercício Prático sobre Microsserviços
+# Micro-Livraria - Exercício Prático sobre Microsserviços
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. 
 
@@ -18,7 +18,7 @@ No restante deste documento vamos:
 
 ## Arquitetura
 
-A Livraria ASERG/DCC/UFMG possui quatro microsserviços: 
+A micro-livraria possui quatro microsserviços: 
 
 * Front-end: microsserviço responsável pela interface com usuário, conforme mostrado na figura anterior.
 * Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema.
@@ -52,13 +52,6 @@ Veja a seguir um diagrama que mostra os microsserviços de nossa livraria e os p
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108454750-bc2b4c80-724b-11eb-82e5-717b8b5c5a88.png" />
 </p>
 
-Cada um dos serviços expõe suas APIs em diferentes portas:
-
-- **Controller**: HTTP/3000
-- **Shipping**: TCP/3001
-- **Inventory**: TCP/3002
-- **Front-end**: HTTP/5000
-
 ### Exemplo de Arquivo .proto
 
 Cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços. 
@@ -67,7 +60,7 @@ Neste mesmo arquivo, declaramos também os *tipos* dos parâmetros de entrada e 
 O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
+    <img width="50%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
 </p>
 
 ## Executando o Sistema
@@ -79,7 +72,7 @@ A seguir vamos descrever a sequência de passos para você executar o sistema lo
 1. Clone o projeto para o seu computador:
 
 ```
-git clone https://github.com/aserg-ufmg/livraria-microservice.git
+git clone https://github.com/aserg-ufmg/micro-livraria.git
 ```
 
 
@@ -89,7 +82,7 @@ git clone https://github.com/aserg-ufmg/livraria-microservice.git
 3. Em um terminal, vá para o diretório no qual o projeto foi clonado e instale as dependências necessárias para execução dos microsserviços:
 
 ```
-cd livraria-microservice
+cd micro-livraria
 npm install
 ```
 
