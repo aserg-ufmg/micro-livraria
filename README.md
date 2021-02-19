@@ -1,8 +1,10 @@
 # Livraria ASERG/DCC/UFMG - Exercício Prático sobre Microsserviços
 
-Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. O exemplo foi projetado para ser usado em uma **aula prática** sobre microsserviços. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
+Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. 
 
-Como nosso objetivo é totalmente didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
+O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
+
+Como nosso objetivo é didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png" />
@@ -11,19 +13,23 @@ Como nosso objetivo é totalmente didático, na livraria virtual estão à venda
 No restante deste documento vamos:
 
 * Descrever o sistema, com foco na sua arquitetura.
-* Apresentar instruções detalhadas para sua execução local, usando para isso o código que já implementamos e disponibilizamos no repositório.
-* Propor e descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
+* Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
+* Sugerir duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
-A Livraria ASERG/DCC/UFMG (nosso sistema) possui quatro microsserviços: 
+A Livraria ASERG/DCC/UFMG possui quatro microsserviços: 
 
 * Front-end: microsserviço responsável pela interface com usuário, conforme mostrado na figura anterior.
 * Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema.
 * Shipping: microserviço para cálculo de frete.
 * Inventory: microserviço para controle do estoque da livraria.  
 
-Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end. No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
+Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end. 
+
+No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
+
+Para facilitar a execução e entendimento do sistema, também não usamos nenhum banco de dados ou outros serviços externo.
 
 ## Protocolos de Comunicação
 
