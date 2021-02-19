@@ -2,9 +2,9 @@
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
-O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
+O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato com  microsserviços e com tecnologias normalmente usadas nesse tipo de arquitetura.
 
-Como nosso objetivo é didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Portanto, concretamente, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
+Como nosso objetivo é didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Assim, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png" />
@@ -27,15 +27,20 @@ A micro-livraria possui quatro microsserviços:
 
 Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end.
 
-No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
+No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser copiados para o sistema.
 
 Para facilitar a execução e entendimento do sistema, também não usamos bancos de dados ou serviços externos.
 
 ## Protocolos de Comunicação
 
-A comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web.
+Como ilustrado no diagrama a seguir, a comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web. Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/).
 
-Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente, isto é, como se tais funções fossem locais).
+<p align="center">
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108454750-bc2b4c80-724b-11eb-82e5-717b8b5c5a88.png" />
+</p>
+
+
+Optamos por usar gRPC no backend porque ele possui um desempenho melhor do que REST. Especificamente, gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente, isto é, como se tais funções fossem locais).
 
 Para viabilizar essa transparência, gRPC usa dois conceitos centrais:
 
@@ -46,11 +51,6 @@ Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou
 
 > Protocol Buffer = linguagem para definição de interfaces + protocolo para definição das mensagens trocadas entre aplicações clientes e servidoras
 
-Veja a seguir um diagrama que mostra os microsserviços de nossa livraria e os protocolos que eles usam para se comunicarem:
-
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108454750-bc2b4c80-724b-11eb-82e5-717b8b5c5a88.png" />
-</p>
 
 ### Exemplo de Arquivo .proto
 
