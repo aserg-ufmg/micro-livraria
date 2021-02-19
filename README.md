@@ -149,7 +149,7 @@ message Product {
 
 3. Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
 
-Para isso, basta incluir uma nova função via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID` . Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+Para isso, basta incluir uma nova função no objeto servervia parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID`. 
 
 ```js
     searchProductByID: (payload, callback) => {
@@ -159,6 +159,12 @@ Para isso, basta incluir uma nova função via parâmetro do comando `server.add
         );
     },
 ```
+
+A função acima usa o método `find` para pesquisar em `products` pelo xxx. Veja que:
+
+*  `payload` é o parâmetro de entrada do nosso serviço, definido antes no arquivo .proto. Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta usar `payload.request.id`.
+* `product` é xxx  
+* [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
 
 4. Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
 
