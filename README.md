@@ -201,4 +201,4 @@ Ou seja: apenas implementamos a nova operação no backend. A sua incorporação
 
 # Créditos
 
-Esse exercício prático foi elaborado por Rodrigo Brito, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, sob orientação do Prof. Marco Tulio Valente.
+Este exercício prático, incluindo o seu código, foi elaborado por Rodrigo Brito, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, sob orientação do Prof. Marco Tulio Valente.
