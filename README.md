@@ -1,6 +1,6 @@
 # Micro-Livraria - Exercício Prático sobre Microsserviços
 
-Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**. 
+Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
 O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato real com alguns microsserviços e com tecnologias normalmente usadas nesse tipo de aplicação.
 
@@ -12,20 +12,20 @@ Como nosso objetivo é didático, na livraria virtual estão à venda apenas tr�
 
 No restante deste documento vamos:
 
-* Descrever o sistema, com foco na sua arquitetura.
-* Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
-* Sugerir duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
+-   Descrever o sistema, com foco na sua arquitetura.
+-   Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
+-   Sugerir duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
-A micro-livraria possui quatro microsserviços: 
+A micro-livraria possui quatro microsserviços:
 
-* Front-end: microsserviço responsável pela interface com usuário, conforme mostrado na figura anterior.
-* Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema.
-* Shipping: microserviço para cálculo de frete.
-* Inventory: microserviço para controle do estoque da livraria.  
+-   Front-end: microsserviço responsável pela interface com usuário, conforme mostrado na figura anterior.
+-   Controller: microsserviço responsável por intermediar a comunicação entre o front-end e o backend do sistema.
+-   Shipping: microserviço para cálculo de frete.
+-   Inventory: microserviço para controle do estoque da livraria.
 
-Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end. 
+Os quatro microsserviços estão implementados em **JavaScript**, usando o Node.js para execução dos serviços no back-end.
 
 No entanto, **você conseguirá completar as tarefas práticas mesmo se nunca programou em JavaScript**. O motivo é que o nosso roteiro já inclui os trechos de código que devem ser incorporados, bem como instruções para cópia deles para o sistema.
 
@@ -35,12 +35,12 @@ Para facilitar a execução e entendimento do sistema, também não usamos banco
 
 A comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web.
 
-Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente, isto é, como se tais funções fossem locais). 
+Já a comunicação entre o Controller e os microsserviços do back-end usa [gRPC](https://grpc.io/), que é um protocolo que possui um desempenho melhor do que REST. gRPC é baseado no conceito de **Chamada Remota de Procedimentos (RPC)**. A ideia é simples: em aplicações distribuídas que usam gRPC, um cliente pode chamar funções implementadas em outros processos de forma transparente, isto é, como se tais funções fossem locais).
 
-Para viabilizar essa transparência, gRPC usa dois conceitos centrais: 
+Para viabilizar essa transparência, gRPC usa dois conceitos centrais:
 
-* uma linguagem para definição de interfaces 
-* um protocolo para troca de mensagens entre aplicações clientes e servidoras. 
+-   uma linguagem para definição de interfaces
+-   um protocolo para troca de mensagens entre aplicações clientes e servidoras.
 
 Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou o nome de **Protocol Buffer**. Ou seja, podemos dizer que:
 
@@ -54,8 +54,8 @@ Veja a seguir um diagrama que mostra os microsserviços de nossa livraria e os p
 
 ### Exemplo de Arquivo .proto
 
-Cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços. 
-Neste mesmo arquivo, declaramos também os *tipos* dos parâmetros de entrada e saída dessas operações. 
+Cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços.
+Neste mesmo arquivo, declaramos também os _tipos_ dos parâmetros de entrada e saída dessas operações.
 
 O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
 
@@ -75,9 +75,7 @@ A seguir vamos descrever a sequência de passos para você executar o sistema lo
 git clone https://github.com/aserg-ufmg/micro-livraria.git
 ```
 
-
 2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
-
 
 3. Em um terminal, vá para o diretório no qual o projeto foi clonado e instale as dependências necessárias para execução dos microsserviços:
 
@@ -93,32 +91,30 @@ npm run start
 ```
 
 5.  Para fins de teste, efetue uma requisição para o microsserviço reponsável pela API do backend.
- 
-* Se tiver o `curl` instalado na sua máquina, basta usar:
+
+-   Se tiver o `curl` instalado na sua máquina, basta usar:
 
 ```
 curl -i -X GET http://localhost:3000/products
 ```
 
-* Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
-
+-   Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
 
 6. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
- 
- 
+
 ## Tarefa Prática #1: Implementando uma Nova Operação
 
 Nesta primeira tarefa, você irá implementar uma nova operação no serviço `Inventory`. Essa operação vai pesquisar por um produto, dado o seu ID.
 
-Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/inventory.proto`. 
+Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/inventory.proto`.
 
 1. Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assiantura no arquivo `proto`:
 
 ```proto
-rpc Product(Payload) returns (ProductResponse) {}
+rpc SearchProductByID(Payload) returns (ProductResponse) {}
 ```
 
-Em outras palavras, você está definindo que o microsserviço `Inventory` vai responder a uma nova requisição, chamada `Product`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`. 
+Em outras palavras, você está definindo que o microsserviço `Inventory` vai responder a uma nova requisição, chamada `SearchProductByID`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`.
 
 2. Declare também o tipo do objeto `Payload`, o qual apenas contém o ID do produto a ser pesquisado.
 
@@ -127,6 +123,7 @@ message Payload {
     int32 id = 1;
 }
 ```
+
 Veja que `ProductResponse` -- isto é, o tipo de retorno da operação -- já está declarado mais abaixo no arquivo `proto`:
 
 ```proto
@@ -148,12 +145,12 @@ message Product {
 }
 ```
 
-3. Agora você deve implementar a função `Product` no arquivo `services/inventory/index.js`. Reforçando, no passo anterior, apenas declarando a assinatura dessa função. Então, agora, vamos prover uma implementação para essa assinatura.
- 
-Para implementá-la, basta incluir uma nova função via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `product` . Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
+3. Agora você deve implementar a função `SearchProductByID` no arquivo `services/inventory/index.js`. Reforçando, no passo anterior, apenas declarando a assinatura dessa função. Então, agora, vamos prover uma implementação para essa assinatura.
+
+Para implementá-la, basta incluir uma nova função via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID` . Para buscar o produto pelo ID, podemos utilizar a função `find` do JavaScript:
 
 ```js
-    product: (payload, callback) => {
+    searchProductByID: (payload, callback) => {
         callback(
             null,
             products.find((product) => product.id == payload.request.id)
@@ -161,20 +158,18 @@ Para implementá-la, basta incluir uma nova função via parâmetro do comando `
     },
 ```
 
-4. Para finalizar, temos que incuir a função `Product` em nosso `Controller`. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
+4. Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
 
 ```js
-app.get('/product/:id', (req, res, next) => {
-    
-});
+app.get('/product/:id', (req, res, next) => {});
 ```
 
 5. Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
 
 ```js
- inventory.Product({ id: req.params.id }, (err, product) => {
-    // restante da lógica... 
- });
+inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
+    // restante da lógica...
+});
 ```
 
 6. Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
