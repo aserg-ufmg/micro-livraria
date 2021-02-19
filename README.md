@@ -62,10 +62,9 @@ Cada um dos serviços expõe suas APIs em diferentes portas:
 ### Exemplo de Arquivo .proto
 
 Cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços. 
-
 Neste mesmo arquivo, declaramos também os *tipos* dos parâmetros de entrada e saída dessas operações. 
 
-O exemplo a seguir mostra a assinatura do serviço de frete, onde a função `Get` recebe como parâmetro um objeto contendo o CEP (`ShippingPayLoad`) e retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
+O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Basicamente, nele estamos definindo que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, ela retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
