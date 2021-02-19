@@ -64,7 +64,7 @@ Cada um dos serviços expõe suas APIs em diferentes portas:
 Cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços. 
 Neste mesmo arquivo, declaramos também os *tipos* dos parâmetros de entrada e saída dessas operações. 
 
-O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Basicamente, nele estamos definindo que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, ela retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
+O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
@@ -74,7 +74,7 @@ O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. 
 
 A seguir vamos descrever a sequência de passos para você executar o sistema localmente em sua máquina. Ou seja, todos os microsserviços estarão rodando na sua máquina.
 
-**IMPORTANTE:** Você deve seguir esses passos cuidadosamente antes de implementar as tarefas práticas descritas nas próximas seções.
+**IMPORTANTE:** Você deve seguir esses passos antes de implementar as tarefas práticas descritas nas próximas seções.
 
 1. Clone o projeto para o seu computador:
 
@@ -86,7 +86,7 @@ git clone https://github.com/aserg-ufmg/livraria-microservice.git
 2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
 
 
-3. Abra o diretório no qual o projeto foi clonado em um terminal e instale as dependências necessárias para execução dos microsserviços:
+3. Em um terminal, vá para o diretório no qual o projeto foi clonado e instale as dependências necessárias para execução dos microsserviços:
 
 ```
 cd livraria-microservice
@@ -115,7 +115,7 @@ curl -i -X GET http://localhost:3000/products
  
 ## Tarefa Prática #1: Implementando uma Nova Operação
 
-Nesta primeira tarefa, você deve implementar uma nova operação no serviço `Inventory`. Essa operação vai pesquisar por um produto, dado o seu ID.
+Nesta primeira tarefa, você irá implementar uma nova operação no serviço `Inventory`. Essa operação vai pesquisar por um produto, dado o seu ID.
 
 Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, localizado na pasta `proto/inventory.proto`. 
 
