@@ -14,7 +14,9 @@ No restante deste documento vamos:
 
 -   Descrever o sistema, com foco na sua arquitetura.
 -   Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
--   Sugerir duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: (1) a implementação de uma nova operação em um dos microsserviços; e (2) a criação de containers Docker para facilitar a execução dos microsserviços.
+-   Descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: 
+    * Tarefa #1: Implementação de uma nova operação em um dos microsserviços
+    * Tarefa #2: Criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
