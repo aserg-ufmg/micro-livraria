@@ -2,7 +2,7 @@
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
-O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato com  microsserviços e com tecnologias normalmente usadas nesse tipo de arquitetura.
+O exemplo foi projetado para ser usado em uma **aula prática sobre microsserviços**. O objetivo é permitir que o aluno tenha um primeiro contato com microsserviços e com tecnologias normalmente usadas nesse tipo de arquitetura.
 
 Como nosso objetivo é didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Assim, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
@@ -49,7 +49,6 @@ Para viabilizar essa transparência, gRPC usa dois conceitos centrais:
 Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou o nome de **Protocol Buffer**. Ou seja, podemos dizer que:
 
 > Protocol Buffer = linguagem para definição de interfaces + protocolo para definição das mensagens trocadas entre aplicações clientes e servidoras
-
 
 ### Exemplo de Arquivo .proto
 
@@ -134,14 +133,14 @@ Veja que `ProductResponse` -- isto é, o tipo de retorno da operação -- já es
 
 ```proto
 message ProductsResponse {
-    repeated Product products = 1;
+    repeated ProductResponse products = 1;
 }
 ```
 
-Ou seja, a resposta da nossa requisição conterá um único campo, do tipo `Product`, que também já está implementando no mesmo arquivo:
+Ou seja, a resposta da nossa requisição conterá um único campo, do tipo `ProductResponse`, que também já está implementando no mesmo arquivo:
 
 ```proto
-message Product {
+message ProductResponse {
     int32 id = 1;
     string name = 2;
     int32 quantity = 3;
@@ -155,7 +154,7 @@ message Product {
 
 Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
 
-Para isso, basta incluir uma nova função no objeto `server`via parâmetro do comando `server.addService`, para identificar qual função do serviço estamos implementando devemos utilizar a chave `searchProductByID`. 
+Para isso, você precisa criar uma função que é definida no segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Semelhante ao método `searchAllProducts`, que já está implementando, você deve adicionar o corpo da função `searchProductByID` que contém a lógica de filtragem de produtos por ID, este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
 
 ```js
     searchProductByID: (payload, callback) => {
@@ -166,36 +165,122 @@ Para isso, basta incluir uma nova função no objeto `server`via parâmetro do c
     },
 ```
 
-A função acima usa o método `find` para pesquisar em `products` pelo xxx. Veja que:
+A função acima usa o método `find` para pesquisar em `products` pelo ID fornecido. Veja que:
 
-*  `payload` é o parâmetro de entrada do nosso serviço, conforme definido antes no arquivo .proto (passo 2). Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta escrever `payload.request.id`.
-* `product` é xxx  
-* [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
+-   `payload` é o parâmetro de entrada do nosso serviço, conforme definido antes no arquivo .proto (passo 2). Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta escrever `payload.request.id`.
+-   `product` é uma unidade de produto a ser verificado pela função `find`. Essa verificação é feita em todos os items do lista de produtos até que um `product` atenda a condição de busca, isto é `product.id == payload.request.id`.
+-   [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
+-   `callback` é uma função que deve ser invocada com dois parâmetros, o primeiro parâmetro é um objeto de erro, caso ocorra (no nosso exemplo nenhum erro é retornado, portanto `null`). O segundo parâmetro é o resultado da função, no nosso caso um `ProductResponse`, assim como definido no arquivo [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
 #### Passo 4:
 
-Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, defina uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro:
+Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Dentro da rota, você deve incluir a chamada para o método definido passo anterior (Passo 3).
+
+A `SearchProductByID` retorna um erro `err` e o resultado da busca através do objeto `product`. Desta forma, precisamos definir dois fluxos.
+
+-   Caso `err` esteja preenchido, você deve logar e retornar uma mensagem de erro para o usuário.
+-   Caso contrário, você deve retornar o produto encontrado.
+
+O código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
 
 ```js
-app.get('/product/:id', (req, res, next) => {});
-```
-
-#### Passo 5:
-
-Similar ao `/products`, agora inclua a chamada para o método definido no microserviço. Desta vez, nós iremos passar um parâmetro com o ID do produto:
-
-```js
-inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
-    // restante da lógica...
+app.get('/product/:id', (req, res, next) => {
+    inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send({ error: 'something failed :(' });
+        } else {
+            res.json(product);
+        }
+    });
 });
 ```
 
-#### Passo 6:
+#### Passo 5:
 
 Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
 
 Para ficar claro: até aqui, apenas implementamos a nova operação no backend. A sua incorporação no frontend ficará pendente, pois requer mudar a interface Web, para, por exemplo, incluir um botão "Pesquisar Livro".
 
+**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
+
+## Tarefa Prática #2: Criando um container Docker
+
+Nesta atividade você deve criar um container Docker para o seu microserviço. Os conatiners são importantes para isolar e distribuir os microserviços em ambiente de produção. Para fins didáticos iremos criar apenas uma imagem Docker para exemplificar o processo.
+
+Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a atividade, um passo a passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/)
+
+#### Passo 1
+
+Crie um arquivo na raiz do projecto com o nome `shipping.Dockerfile`. Este arquivo armazenará as instruções de criação de uma imagem Docker para o serviço `Shipping`.
+
+<p align="center">
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
+</p>
+
+O Dockerfile é utilizado para gerar uma imagem, e a partir de uma imagem você pode criar várias instâncias de uma mesma aplicação. Ou seja, você permite que seu microserviço seja escalável horizontalmente.
+
+#### Passo 2
+
+No Dockerfile, você precisa incluir 5 instruições
+
+-   `FROM` - Qual tecnologia será a base de criação do imagem.
+-   `WORKDIR` - Diretório da imagem na qual os comandos serão executados.
+-   `COPY` - Copiar o código fonte para a imagem.
+-   `RUN` - Executar comandos para instalação de dependências.
+-   `CMD` - Comando final para executar o seu código quando o container for criado.
+
+Desta forma, nosso Dockerfile terá o seguinte formato.
+
+```Dockerfile
+FROM node # Imagem base em Node
+WORKDIR /app # Diretório de trabalho
+
+# Copiar arquivs para a pasta /app da imagem
+COPY . /app
+
+# Instala as dependências
+RUN npm install
+
+# Define comando de incialização
+CMD ["node", "/app/services/shipping/index.js"]
+```
+
+#### Passo 2
+
+Agora nós vamos compilar o nosso Dockerfile e criar nossa image, para isto precisamos utilizar o terminal do computador para executar o seguinte comando, vale ressaltar que o comando precisa ser executado na raiz do projeto.
+
+```
+docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
+```
+
+Onde:
+
+-   `docker build` - Comando de compilação do Dockr
+-   `-t micro-livraria/shipping` - Tag de identificação da imagem criada.
+-   `-f shipping.Dockerfile` - Dockerfile a ser compilado
+
+O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto, essa referência é utilizada ao copiar arquivos para a imagem criada.
+
+#### Passo 3
+
+Antes de iniciar o serviço via container Docker, nós precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta remover o trecho contendo `start-shipping` do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/), na linha 7. Após remover, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
+
+Agora, para testar a imagem criada no passo anterior, você precisa executá-la utilizando o seguinte comando:
+
+```
+docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
+```
+
+Onde:
+
+-   `docker run` - Comando de execução de uma imagem docker.
+-   `-ti` - Habilita a interação com o container via terminal.
+-   `--name shipping` - Define o nome do container criado.
+-   `-p 3001:3001` - Redireciona a porta 3001 do container para sua máquina.
+-   `micro-livraria/shipping` - Especifica qual a imagem utilizada.
+
+Se tudo estiver correto, você irá receber a seguinte mensagem em seu terminal: `Shipping Service running`. E o Controller pode acessar o serviço diretamente através do container Docker.
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
 
