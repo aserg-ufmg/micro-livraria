@@ -272,9 +272,13 @@ O `./` no final indica que estamos executando os comandos do Dockerfile tendo co
 
 #### Passo 3
 
-Antes de iniciar o serviço via container Docker, nós precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta remover o trecho contendo `start-shipping` do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/), na linha 7. Após remover, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
+Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json)
 
-Agora, para testar a imagem criada no passo anterior, você precisa executá-la utilizando o seguinte comando:
+"start-shipping": "nodemon services/shipping/index.js",
+
+Em seguida, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
+
+Por fim, para testar a imagem criada no passo anterior, você precisa executá-la utilizando o seguinte comando:
 
 ```
 docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
