@@ -226,8 +226,6 @@ Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imag
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
 </p>
 
-#### Passo 2
-
 No Dockerfile, você precisa incluir cinco instruções
 
 -   `FROM` - tecnologia que será a base de criação da imagem.
@@ -236,7 +234,7 @@ No Dockerfile, você precisa incluir cinco instruções
 -   `RUN` - comando para instalação de dependências.
 -   `CMD` - comando para executar o seu código quando o container for criado.
 
-Desta forma, nosso Dockerfile terá as seguintes linhas:
+Ou seja, nosso Dockerfile terá as seguintes linhas:
 
 ```Dockerfile
 FROM node # Imagem base em Node
@@ -254,7 +252,7 @@ CMD ["node", "/app/services/shipping/index.js"]
 
 #### Passo 2
 
-Agora nós vamos compilar o nosso Dockerfile e criar nossa imagem. Para isto execute o seguinte comando em um terminal do seu sistema operacional (o comando precisa ser executado na raiz do projeto).
+Agora nós vamos compilar o nosso Dockerfile e criar a imagem. Para isto execute o seguinte comando em um terminal do seu sistema operacional (o comando precisa ser executado na raiz do projeto).
 
 ```
 docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
