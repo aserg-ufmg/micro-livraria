@@ -110,7 +110,7 @@ Nesta primeira tarefa, você irá implementar uma nova operação no serviço `I
 
 Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `.proto`, no caso [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
-#### Passo 1:
+#### Passo 1
 
 Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assinatura no referido arquivo `.proto` (na linha logo após a assinatura da função `SearchAllProducts`):
 
@@ -123,7 +123,7 @@ service InventoryService {
 
 Em outras palavras, você está definindo que o microsserviço `Inventory` vai responder a uma nova requisição, chamada `SearchProductByID`, que tem como parâmetro de entrada um objeto do tipo `Payload` e como parâmetro de saída um objeto do tipo `ProductResponse`.
 
-#### Passo 2:
+#### Passo 2
 
 Inclua também no mesmo arquivo a declaração do tipo do objeto `Payload`, o qual apenas contém o ID do produto a ser pesquisado.
 
@@ -154,7 +154,7 @@ message ProductResponse {
 }
 ```
 
-#### Passo 3:
+#### Passo 3
 
 Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
 
@@ -185,7 +185,7 @@ A função acima usa o método `find` para pesquisar em `products` pelo ID de pr
     -   O primeiro parâmetro é um objeto de erro, caso ocorra. No nosso exemplo nenhum erro será retornado, portanto `null`. 
     -   O segundo parâmetro é o resultado da função, no nosso caso um `ProductResponse`, assim como definido no arquivo [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
-#### Passo 4:
+#### Passo 4
 
 Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Na definição da rota, você deve também incluir a chamada para o método definido no Passo 3.
 
@@ -210,7 +210,7 @@ Para ficar claro: até aqui, apenas implementamos a nova operação no backend. 
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
 
-## Tarefa Prática #2: Criando um container Docker
+## Tarefa Prática #2: Criando um Container Docker
 
 Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Para fins didáticos, iremos criar apenas uma imagem Docker para exemplificar o processo.
 
@@ -224,17 +224,17 @@ Crie um arquivo na raiz do projecto com o nome `shipping.Dockerfile`. Este arqui
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
 </p>
 
-O Dockerfile é utilizado para gerar uma imagem, e a partir de uma imagem você pode criar várias instâncias de uma mesma aplicação. Ou seja, você permite que seu microserviço seja escalável horizontalmente.
+O Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, você possibiliza que seu microserviço seja escalável horizontalmente.
 
 #### Passo 2
 
 No Dockerfile, você precisa incluir 5 instruições
 
--   `FROM` - Qual tecnologia será a base de criação do imagem.
--   `WORKDIR` - Diretório da imagem na qual os comandos serão executados.
--   `COPY` - Copiar o código fonte para a imagem.
--   `RUN` - Executar comandos para instalação de dependências.
--   `CMD` - Comando final para executar o seu código quando o container for criado.
+-   `FROM` - tecnologia que será a base de criação da imagem.
+-   `WORKDIR` - diretório da imagem na qual os comandos serão executados.
+-   `COPY` - comando para copiar o código fonte para a imagem.
+-   `RUN` - comando para instalação de dependências.
+-   `CMD` - comando para executar o seu código quando o container for criado.
 
 Desta forma, nosso Dockerfile terá o seguinte formato.
 
@@ -242,19 +242,19 @@ Desta forma, nosso Dockerfile terá o seguinte formato.
 FROM node # Imagem base em Node
 WORKDIR /app # Diretório de trabalho
 
-# Copiar arquivs para a pasta /app da imagem
+# Comando para copiar os arquivos para a pasta /app da imagem
 COPY . /app
 
-# Instala as dependências
+# Comando para instalar as dependências
 RUN npm install
 
-# Define comando de incialização
+# Comando para inicializar (executar) a aplicação
 CMD ["node", "/app/services/shipping/index.js"]
 ```
 
 #### Passo 2
 
-Agora nós vamos compilar o nosso Dockerfile e criar nossa image, para isto precisamos utilizar o terminal do computador para executar o seguinte comando, vale ressaltar que o comando precisa ser executado na raiz do projeto.
+Agora nós vamos compilar o nosso Dockerfile e criar nossa imagem. Para isto precisamos utilizar o terminal do computador para executar o seguinte comando (o qual precisa ser executado na raiz do projeto).
 
 ```
 docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
@@ -262,11 +262,11 @@ docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
 
 Onde:
 
--   `docker build` - Comando de compilação do Dockr
+-   `docker build` - Comando de compilação do Docker
 -   `-t micro-livraria/shipping` - Tag de identificação da imagem criada.
 -   `-f shipping.Dockerfile` - Dockerfile a ser compilado
 
-O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto, essa referência é utilizada ao copiar arquivos para a imagem criada.
+O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto. Essa referência é utilizada ao copiar arquivos para a imagem criada.
 
 #### Passo 3
 
