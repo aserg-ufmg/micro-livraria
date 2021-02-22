@@ -224,7 +224,7 @@ Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo 
 
 Crie um arquivo na raiz do projeto com o nome `shipping.Dockerfile`. Este arquivo armazenará as instruções para criação de uma imagem Docker para o serviço `Shipping`.
 
-Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, conseguimos, por exemplo, escalar o microsserviço de `Shipping` de forma horizontal.
+Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma aplicação. Com isso, conseguimos escalar o microsserviço de `Shipping` de forma horizontal.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
@@ -272,9 +272,11 @@ O `./` no final indica que estamos executando os comandos do Dockerfile tendo co
 
 #### Passo 3
 
-Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json)
+Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json):
 
+```
 "start-shipping": "nodemon services/shipping/index.js",
+````
 
 Em seguida, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
 
@@ -284,15 +286,17 @@ Por fim, para testar a imagem criada no passo anterior, você precisa executá-l
 docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
 ```
 
-Onde:
+onde:
 
--   `docker run` - Comando de execução de uma imagem docker.
--   `-ti` - Habilita a interação com o container via terminal.
--   `--name shipping` - Define o nome do container criado.
--   `-p 3001:3001` - Redireciona a porta 3001 do container para sua máquina.
--   `micro-livraria/shipping` - Especifica qual a imagem utilizada.
+-   `docker run`: Comando de execução de uma imagem docker.
+-   `-ti`: habilita a interação com o container via terminal.
+-   `--name shipping`: define o nome do container criado.
+-   `-p 3001:3001`: redireciona a porta 3001 do container para sua máquina.
+-   `micro-livraria/shipping`: especifica qual a imagem deve-se executar.
 
 Se tudo estiver correto, você irá receber a seguinte mensagem em seu terminal: `Shipping Service running`. E o Controller pode acessar o serviço diretamente através do container Docker.
+
+**Mas qual foi exatamente a vantagem de criar esse container?** Agora, você pode levá-lo para qualquer máquina ou ambiente e colocar o microsserviço para rodar sem instalar mais nada (incluindo bibliotecas, dependências externas, módulos de runtime, etc).
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
 
