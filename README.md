@@ -65,7 +65,7 @@ O exemplo a seguir mostra o arquivo [.proto](https://github.com/aserg-ufmg/micro
     <img width="50%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
 </p>
 
-Em aplicações gRPC, arquivos .proto são usados para gerar stubs, que nada mais são do que proxies (do padrão de projeto) que encapsulam os detalhes de comunicação em rede, incluindo troca de mensagens, protocolos, etc. Em linguagens estáticas, normalmente precisa-se chamar um "compilador" para gerar automaticamente o código de tais stubs. No caso de JavaScript, no entanto, esse passo não é necessário, pois os stubs são gerados de forma transparente, em tempo de execução.
+Em aplicações gRPC, arquivos .proto são usados para gerar **stubs**, que nada mais são do que proxies (do padrão de projeto) que encapsulam os detalhes de comunicação em rede, incluindo troca de mensagens, protocolos, etc. Em linguagens estáticas, normalmente precisa-se chamar um "compilador" para gerar o código de tais stubs. No caso de JavaScript, no entanto, esse passo não é necessário, pois os stubs são gerados de forma transparente, em tempo de execução.
 
 ## Executando o Sistema
 
@@ -232,11 +232,11 @@ Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imag
 
 No Dockerfile, você precisa incluir cinco instruções
 
--   `FROM` - tecnologia que será a base de criação da imagem.
--   `WORKDIR` - diretório da imagem na qual os comandos serão executados.
--   `COPY` - comando para copiar o código fonte para a imagem.
--   `RUN` - comando para instalação de dependências.
--   `CMD` - comando para executar o seu código quando o container for criado.
+-   `FROM`: tecnologia que será a base de criação da imagem.
+-   `WORKDIR`: diretório da imagem na qual os comandos serão executados.
+-   `COPY`: comando para copiar o código fonte para a imagem.
+-   `RUN`: comando para instalação de dependências.
+-   `CMD`: comando para executar o seu código quando o container for criado.
 
 Ou seja, nosso Dockerfile terá as seguintes linhas:
 
@@ -256,7 +256,7 @@ CMD ["node", "/app/services/shipping/index.js"]
 
 #### Passo 2
 
-Agora nós vamos compilar o nosso Dockerfile e criar a imagem. Para isto execute o seguinte comando em um terminal do seu sistema operacional (o comando precisa ser executado na raiz do projeto).
+Agora nós vamos compilar o Dockerfile e criar a imagem. Para isto, execute o seguinte comando em um terminal do seu sistema operacional (esse comando precisa ser executado na raiz do projeto).
 
 ```
 docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
@@ -264,9 +264,9 @@ docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
 
 onde:
 
--   `docker build` - comando de compilação do Docker
--   `-t micro-livraria/shipping` - tag de identificação da imagem criada.
--   `-f shipping.Dockerfile` - dockerfile a ser compilado
+-   `docker build`: comando de compilação do Docker
+-   `-t micro-livraria/shipping`: tag de identificação da imagem criada.
+-   `-f shipping.Dockerfile`: dockerfile a ser compilado
 
 O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto. 
 
