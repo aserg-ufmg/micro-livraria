@@ -218,13 +218,13 @@ Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo 
 
 #### Passo 1
 
-Crie um arquivo na raiz do projecto com o nome `shipping.Dockerfile`. Este arquivo armazenará as instruções de criação de uma imagem Docker para o serviço `Shipping`.
+Crie um arquivo na raiz do projeto com o nome `shipping.Dockerfile`. Este arquivo armazenará as instruções para criação de uma imagem Docker para o serviço `Shipping`.
+
+Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, você vai, por exemplo, conseguir escalar o microsserviço de `Shipping de forma horizontal.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
 </p>
-
-O Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, você possibiliza que seu microserviço seja escalável horizontalmente.
 
 #### Passo 2
 
