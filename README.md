@@ -189,7 +189,7 @@ A função acima usa o método `find` para pesquisar em `products` pelo ID de pr
 
 Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Na definição da rota, você deve também incluir a chamada para o método definido no Passo 3.
 
-O seguinte código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
+Sendo mais específico, o seguinte trecho de código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
 
 ```js
 app.get('/product/:id', (req, res, next) => {
@@ -204,13 +204,6 @@ app.get('/product/:id', (req, res, next) => {
 });
 ```
 
-A `SearchProductByID` retorna um erro `err` e o resultado da busca através do objeto `product`. Desta forma, precisamos definir dois fluxos.
-
--   Caso `err` esteja preenchido, você deve logar e retornar uma mensagem de erro para o usuário.
--   Caso contrário, você deve retornar o produto encontrado.
-
-#### Passo 5:
-
 Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/product/1
 
 Para ficar claro: até aqui, apenas implementamos a nova operação no backend. A sua incorporação no frontend ficará pendente, pois requer mudar a interface Web, para, por exemplo, incluir um botão "Pesquisar Livro".
@@ -219,9 +212,9 @@ Para ficar claro: até aqui, apenas implementamos a nova operação no backend. 
 
 ## Tarefa Prática #2: Criando um container Docker
 
-Nesta atividade você deve criar um container Docker para o seu microserviço. Os conatiners são importantes para isolar e distribuir os microserviços em ambiente de produção. Para fins didáticos iremos criar apenas uma imagem Docker para exemplificar o processo.
+Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Para fins didáticos, iremos criar apenas uma imagem Docker para exemplificar o processo.
 
-Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a atividade, um passo a passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/)
+Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a tarefa. Um passo-a-passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/).
 
 #### Passo 1
 
