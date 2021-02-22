@@ -212,7 +212,7 @@ Para ficar claro: até aqui, apenas implementamos a nova operação no backend. 
 
 ## Tarefa Prática #2: Criando um Container Docker
 
-Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Para fins didáticos, iremos criar apenas uma imagem Docker para exemplificar o processo.
+Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Como nosso primeiro objetivo é didático, iremos criar apenas uma imagem Docker para exemplificar o processo.
 
 Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a tarefa. Um passo-a-passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/).
 
@@ -220,7 +220,7 @@ Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo 
 
 Crie um arquivo na raiz do projeto com o nome `shipping.Dockerfile`. Este arquivo armazenará as instruções para criação de uma imagem Docker para o serviço `Shipping`.
 
-Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, você vai, por exemplo, conseguir escalar o microsserviço de `Shipping de forma horizontal.
+Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imagem. A partir dessa imagem, você pode criar várias instâncias de uma mesma aplicação. Com isso, conseguimos, por exemplo, escalar o microsserviço de `Shipping` de forma horizontal.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108651385-67ccda80-74a0-11eb-9390-80df6ea6fd8c.png" />
@@ -228,7 +228,7 @@ Como ilustrado na próxima figura, o Dockerfile é utilizado para gerar uma imag
 
 #### Passo 2
 
-No Dockerfile, você precisa incluir 5 instruições
+No Dockerfile, você precisa incluir cinco instruções
 
 -   `FROM` - tecnologia que será a base de criação da imagem.
 -   `WORKDIR` - diretório da imagem na qual os comandos serão executados.
@@ -236,7 +236,7 @@ No Dockerfile, você precisa incluir 5 instruições
 -   `RUN` - comando para instalação de dependências.
 -   `CMD` - comando para executar o seu código quando o container for criado.
 
-Desta forma, nosso Dockerfile terá o seguinte formato.
+Desta forma, nosso Dockerfile terá as seguintes linhas:
 
 ```Dockerfile
 FROM node # Imagem base em Node
@@ -254,19 +254,19 @@ CMD ["node", "/app/services/shipping/index.js"]
 
 #### Passo 2
 
-Agora nós vamos compilar o nosso Dockerfile e criar nossa imagem. Para isto precisamos utilizar o terminal do computador para executar o seguinte comando (o qual precisa ser executado na raiz do projeto).
+Agora nós vamos compilar o nosso Dockerfile e criar nossa imagem. Para isto execute o seguinte comando em um terminal do seu sistema operacional (o comando precisa ser executado na raiz do projeto).
 
 ```
 docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
 ```
 
-Onde:
+onde:
 
--   `docker build` - Comando de compilação do Docker
--   `-t micro-livraria/shipping` - Tag de identificação da imagem criada.
--   `-f shipping.Dockerfile` - Dockerfile a ser compilado
+-   `docker build` - comando de compilação do Docker
+-   `-t micro-livraria/shipping` - tag de identificação da imagem criada.
+-   `-f shipping.Dockerfile` - dockerfile a ser compilado
 
-O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto. Essa referência é utilizada ao copiar arquivos para a imagem criada.
+O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto. 
 
 #### Passo 3
 
