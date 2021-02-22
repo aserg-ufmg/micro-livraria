@@ -297,7 +297,7 @@ onde:
 Se tudo estiver correto, você irá receber a seguinte mensagem em seu terminal: 
 
 ```
-Shipping Service running`. 
+Shipping Service running 
 ```
 
 E o Controller pode acessar o serviço diretamente através do container Docker.
