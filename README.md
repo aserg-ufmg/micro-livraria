@@ -62,7 +62,7 @@ Neste mesmo arquivo, declaramos também os tipos dos parâmetros de entrada e sa
 O exemplo a seguir mostra o arquivo [.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/shipping.proto) do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `GetShippingRate`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado um outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
-    <img width="50%" src="https://user-images.githubusercontent.com/7620947/108770189-c776c480-7538-11eb-850a-f8a23f562fa5.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108770189-c776c480-7538-11eb-850a-f8a23f562fa5.png" />
 </p>
 
 Em aplicações gRPC, arquivos .proto são usados para gerar **stubs**, que nada mais são do que proxies (do padrão de projeto) que encapsulam os detalhes de comunicação em rede, incluindo troca de mensagens, protocolos, etc. Em linguagens estáticas, normalmente precisa-se chamar um "compilador" para gerar o código de tais stubs. No caso de JavaScript, no entanto, esse passo não é necessário, pois os stubs são gerados de forma transparente, em tempo de execução.
@@ -191,7 +191,7 @@ A função acima usa o método `find` para pesquisar em `products` pelo ID de pr
 
 Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Na definição da rota, você deve também incluir a chamada para o método definido no Passo 3.
 
-Sendo mais específico, o seguinte trecho de código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
+Sendo mais específico, o seguinte trecho de código deve ser adicionado na linha 44 do arquivo [services/controller/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/controller/index.js), logo após a rota `/shipping/:cep`.
 
 ```js
 app.get('/product/:id', (req, res, next) => {
@@ -247,8 +247,11 @@ No Dockerfile, você precisa incluir cinco instruções
 Ou seja, nosso Dockerfile terá as seguintes linhas:
 
 ```Dockerfile
-FROM node # Imagem base em Node
-WORKDIR /app # Diretório de trabalho
+# Imagem base derivada do Node
+FROM node
+
+# Diretório de trabalho
+WORKDIR /app
 
 # Comando para copiar os arquivos para a pasta /app da imagem
 COPY . /app
