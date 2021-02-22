@@ -280,7 +280,7 @@ Antes de iniciar o serviço via container Docker, precisamos remover a inicializ
 
 Em seguida, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
 
-Por fim, para testar a imagem criada no passo anterior, você precisa executá-la utilizando o seguinte comando:
+Por fim, para executar a imagem criada no passo anterior (ou seja, colocar o microsservi;co de `Shipping` no ar), você deve usar o comando:
 
 ```
 docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
