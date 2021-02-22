@@ -302,7 +302,7 @@ Shipping Service running
 
 E o Controller pode acessar o serviço diretamente através do container Docker.
 
-**Mas qual foi exatamente a vantagem de criar esse container?** Agora, você pode levá-lo para qualquer máquina ou sistema operacional e colocar o microsserviço para rodar sem instalar mais nada (incluindo bibliotecas, dependências externas, módulos de runtime, etc). Isso vai ocorrer com containers implementados em JavaScrip, como no nosso exemplo, mas também com containers implementados em qualquer outra linguagem.
+**Mas qual foi exatamente a vantagem de criar esse container?** Agora, você pode levá-lo para qualquer máquina ou sistema operacional e colocar o microsserviço para rodar sem instalar mais nada (incluindo bibliotecas, dependências externas, módulos de runtime, etc). Isso vai ocorrer com containers implementados em JavaScript, como no nosso exemplo, mas também com containers implementados em qualquer outra linguagem.
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
 
