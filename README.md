@@ -278,7 +278,7 @@ Antes de iniciar o serviço via container Docker, precisamos remover a inicializ
 "start-shipping": "nodemon services/shipping/index.js",
 ````
 
-Em seguida, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
+Em seguida, você precisa parar o comando antigo (basta usar um CTRL-C no terminal) e rodar o comando `npm run start` para efetuar as mudanças.
 
 Por fim, para executar a imagem criada no passo anterior (ou seja, colocar de novo o microsserviço de `Shipping` no ar), basta usar o comando:
 
