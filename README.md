@@ -65,6 +65,8 @@ O exemplo a seguir mostra o arquivo [.proto](https://github.com/aserg-ufmg/micro
     <img width="50%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
 </p>
 
+Em aplicações gRPC, arquivos .proto são usados para gerar stubs, que nada mais são do que proxies (do padrão de projeto) que encapsulam os detalhes de comunicação em rede, incluindo troca de mensagens, protocolos, etc. Em linguagens estáticas, normalmente precisa-se chamar um "compilador" para gerar automaticamente o código de tais stubs. No caso de JavaScript, no entanto, esse passo não é necessário, pois os stubs são gerados de forma transparente, em tempo de execução.
+
 ## Executando o Sistema
 
 A seguir vamos descrever a sequência de passos para você executar o sistema localmente em sua máquina. Ou seja, todos os microsserviços estarão rodando na sua máquina.
@@ -212,7 +214,9 @@ Para ficar claro: até aqui, apenas implementamos a nova operação no backend. 
 
 ## Tarefa Prática #2: Criando um Container Docker
 
-Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Como nosso primeiro objetivo é didático, iremos criar apenas uma imagem Docker para exemplificar o processo.
+Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Em outras palavras, um vez "copiado" para um container, um microsserviço pode ser executado em qualquer ambiente, seja ele sua máquina local, o servidor de sua universidade, ou um sistema de cloud (como Amazon AWS, Google Cloud, etc).
+
+Como nosso primeiro objetivo é didático, iremos criar apenas uma imagem Docker para exemplificar o uso de containers.
 
 Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a tarefa. Um passo-a-passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/).
 
