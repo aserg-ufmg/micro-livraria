@@ -272,7 +272,7 @@ O `./` no final indica que estamos executando os comandos do Dockerfile tendo co
 
 #### Passo 3
 
-Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json):
+Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json) (isto é, linha 9):
 
 ```
 "start-shipping": "nodemon services/shipping/index.js",
@@ -280,7 +280,7 @@ Antes de iniciar o serviço via container Docker, precisamos remover a inicializ
 
 Em seguida, você precisa parar o comando antigo e rodar o comando `npm run start` para efetuar as mudanças.
 
-Por fim, para executar a imagem criada no passo anterior (ou seja, colocar de novoo microsserviço de `Shipping` no ar), você deve usar o comando:
+Por fim, para executar a imagem criada no passo anterior (ou seja, colocar de novo o microsserviço de `Shipping` no ar), basta usar o comando:
 
 ```
 docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
@@ -288,7 +288,7 @@ docker run -ti --name shipping -p 3001:3001 micro-livraria/shipping
 
 onde:
 
--   `docker run`: Comando de execução de uma imagem docker.
+-   `docker run`: comando de execução de uma imagem docker.
 -   `-ti`: habilita a interação com o container via terminal.
 -   `--name shipping`: define o nome do container criado.
 -   `-p 3001:3001`: redireciona a porta 3001 do container para sua máquina.
