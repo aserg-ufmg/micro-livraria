@@ -162,7 +162,7 @@ Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. E
 
 Para isso, você precisa implementar a função requerida pelo segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
 
-Semelhante à função `searchAllProducts`, que já está implementando, você deve adicionar o corpo da função `searchProductByID` que contém a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
+De forma semelhante à função `searchAllProducts`, que já está implementada, você deve adicionar o corpo da função `searchProductByID` com a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
 
 ```js
     searchProductByID: (payload, callback) => {
@@ -173,36 +173,41 @@ Semelhante à função `searchAllProducts`, que já está implementando, você d
     },
 ```
 
-A função acima usa o método `find` para pesquisar em `products` pelo ID fornecido. Veja que:
+A função acima usa o método `find` para pesquisar em `products` pelo ID de produto fornecido. Veja que:
 
 -   `payload` é o parâmetro de entrada do nosso serviço, conforme definido antes no arquivo .proto (passo 2). Ele armazena o ID do produto que queremos pesquisar. Para acessar esse ID basta escrever `payload.request.id`.
--   `product` é uma unidade de produto a ser verificado pela função `find`. Essa verificação é feita em todos os items do lista de produtos até que um `product` atenda a condição de busca, isto é `product.id == payload.request.id`.
+
+-   `product` é uma unidade de produto a ser pesquisado pela função `find` (nativa de JavaScript). Essa pesquisa é feita em todos os items do lista de produtos até que um primeiro `product` atenda a condição de busca, isto é `product.id == payload.request.id`.
+
 -   [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
--   `callback` é uma função que deve ser invocada com dois parâmetros, o primeiro parâmetro é um objeto de erro, caso ocorra (no nosso exemplo nenhum erro é retornado, portanto `null`). O segundo parâmetro é o resultado da função, no nosso caso um `ProductResponse`, assim como definido no arquivo [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
+
+-   `callback` é uma função que deve ser invocada com dois parâmetros:
+    -   O primeiro parâmetro é um objeto de erro, caso ocorra. No nosso exemplo nenhum erro será retornado, portanto `null`. 
+    -   O segundo parâmetro é o resultado da função, no nosso caso um `ProductResponse`, assim como definido no arquivo [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
 #### Passo 4:
 
-Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Dentro da rota, você deve incluir a chamada para o método definido passo anterior (Passo 3).
+Para finalizar, temos que incuir a função `SearchProductByID` em nosso `Controller`. Para isso, você deve incluir uma nova rota `/product/{id}` que receberá o ID do produto como parâmetro. Na definição da rota, você deve também incluir a chamada para o método definido no Passo 3.
 
-A `SearchProductByID` retorna um erro `err` e o resultado da busca através do objeto `product`. Desta forma, precisamos definir dois fluxos.
-
--   Caso `err` esteja preenchido, você deve logar e retornar uma mensagem de erro para o usuário.
--   Caso contrário, você deve retornar o produto encontrado.
-
-O código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
+O seguinte código deve ser adicionado na linha 44 do arquivo [services/api/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/api/index.js), logo após a rota `/shipping/:cep`.
 
 ```js
 app.get('/product/:id', (req, res, next) => {
-    inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
-        if (err) {
+    inventory.SearchProductByID({ id: req.params.id }, (err, product) => { // chama método do microsserviço
+        if (err) {  // se ocorrer algum erro de comunicação com o microsserviço, retorna para o navegador
             console.error(err);
             res.status(500).send({ error: 'something failed :(' });
-        } else {
+        } else { // caso contrário, retorna resultado do microsserviço (um arquivo JSON) com os dados do produto pesquisado
             res.json(product);
         }
     });
 });
 ```
+
+A `SearchProductByID` retorna um erro `err` e o resultado da busca através do objeto `product`. Desta forma, precisamos definir dois fluxos.
+
+-   Caso `err` esteja preenchido, você deve logar e retornar uma mensagem de erro para o usuário.
+-   Caso contrário, você deve retornar o produto encontrado.
 
 #### Passo 5:
 
