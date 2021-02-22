@@ -7,16 +7,16 @@ O exemplo foi projetado para ser usado em uma **aula prática sobre microsservi�
 Como nosso objetivo é didático, na livraria virtual estão à venda apenas três livros, conforme pode ser visto na próxima figura, que mostra a interface Web do sistema. Além disso, a operação de compra apenas simula a ação do usuário, não efetuando mudanças no estoque. Assim, os clientes da livraria podem realizar apenas duas operações: (1) listar os produtos à venda; (2) calcular o frete de envio.
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/107418954-07c85280-6af6-11eb-8cab-64efe548401a.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/108773349-f68f3500-753c-11eb-8c4f-434ca9a9deec.png" />
 </p>
 
 No restante deste documento vamos:
 
 -   Descrever o sistema, com foco na sua arquitetura.
 -   Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
--   Descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: 
-    * Tarefa Prática #1: Implementação de uma nova operação em um dos microsserviços
-    * Tarefa Prática #2: Criação de containers Docker para facilitar a execução dos microsserviços.
+-   Descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem:
+    -   Tarefa Prática #1: Implementação de uma nova operação em um dos microsserviços
+    -   Tarefa Prática #2: Criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
@@ -35,7 +35,7 @@ Para facilitar a execução e entendimento do sistema, também não usamos banco
 
 ## Protocolos de Comunicação
 
-Como ilustrado no diagrama a seguir, a comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web. 
+Como ilustrado no diagrama a seguir, a comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web.
 
 Já a comunicação entre o Controller e os microsserviços do back-end é baseada em [gRPC](https://grpc.io/).
 
@@ -62,7 +62,7 @@ Neste mesmo arquivo, declaramos também os tipos dos parâmetros de entrada e sa
 O exemplo a seguir mostra o arquivo [.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/shipping.proto) do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `GetShippingRate`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado um outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
-    <img width="50%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
+    <img width="50%" src="https://user-images.githubusercontent.com/7620947/108770189-c776c480-7538-11eb-850a-f8a23f562fa5.png" />
 </p>
 
 Em aplicações gRPC, arquivos .proto são usados para gerar **stubs**, que nada mais são do que proxies (do padrão de projeto) que encapsulam os detalhes de comunicação em rede, incluindo troca de mensagens, protocolos, etc. Em linguagens estáticas, normalmente precisa-se chamar um "compilador" para gerar o código de tais stubs. No caso de JavaScript, no entanto, esse passo não é necessário, pois os stubs são gerados de forma transparente, em tempo de execução.
@@ -73,10 +73,10 @@ A seguir vamos descrever a sequência de passos para você executar o sistema lo
 
 **IMPORTANTE:** Você deve seguir esses passos antes de implementar as tarefas práticas descritas nas próximas seções.
 
-1. Clone o projeto para o seu computador:
+1. Faça um fork do [repositório](https://github.com/aserg-ufmg/micro-livraria) no GitHub e clone o projeto através do terminal, lembre-se de incluir o seu usuário na URL antes de executar:
 
 ```
-git clone https://github.com/aserg-ufmg/micro-livraria.git
+git clone https://github.com/<SEU USUÁRIO>/micro-livraria.git
 ```
 
 2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
@@ -158,11 +158,11 @@ message ProductResponse {
 
 #### Passo 3
 
-Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
+Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js).
 
 Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
 
-Para isso, você precisa implementar a função requerida pelo segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
+Para isso, você precisa implementar a função requerida pelo segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js).
 
 De forma semelhante à função `searchAllProducts`, que já está implementada, você deve adicionar o corpo da função `searchProductByID` com a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
 
@@ -184,7 +184,7 @@ A função acima usa o método `find` para pesquisar em `products` pelo ID de pr
 -   [products](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/products.json) é um arquivo JSON que contém a descrição dos livros à venda na livraria.
 
 -   `callback` é uma função que deve ser invocada com dois parâmetros:
-    -   O primeiro parâmetro é um objeto de erro, caso ocorra. No nosso exemplo nenhum erro será retornado, portanto `null`. 
+    -   O primeiro parâmetro é um objeto de erro, caso ocorra. No nosso exemplo nenhum erro será retornado, portanto `null`.
     -   O segundo parâmetro é o resultado da função, no nosso caso um `ProductResponse`, assim como definido no arquivo [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
 #### Passo 4
@@ -195,11 +195,17 @@ Sendo mais específico, o seguinte trecho de código deve ser adicionado na linh
 
 ```js
 app.get('/product/:id', (req, res, next) => {
-    inventory.SearchProductByID({ id: req.params.id }, (err, product) => { // chama método do microsserviço
-        if (err) {  // se ocorrer algum erro de comunicação com o microsserviço, retorna para o navegador
+    // Chama método do microsserviço.
+    inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
+        // Se ocorrer algum erro de comunicação
+        // com o microsserviço, retorna para o navegador.
+        if (err) {
             console.error(err);
             res.status(500).send({ error: 'something failed :(' });
-        } else { // caso contrário, retorna resultado do microsserviço (um arquivo JSON) com os dados do produto pesquisado
+        } else {
+            // Caso contrário, retorna resultado do
+            // microsserviço (um arquivo JSON) com os dados
+            // do produto pesquisado
             res.json(product);
         }
     });
@@ -268,7 +274,7 @@ onde:
 -   `-t micro-livraria/shipping`: tag de identificação da imagem criada.
 -   `-f shipping.Dockerfile`: dockerfile a ser compilado.
 
-O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto. 
+O `./` no final indica que estamos executando os comandos do Dockerfile tendo como referência a raiz do projeto.
 
 #### Passo 3
 
@@ -276,7 +282,7 @@ Antes de iniciar o serviço via container Docker, precisamos remover a inicializ
 
 ```
 "start-shipping": "nodemon services/shipping/index.js",
-````
+```
 
 Em seguida, você precisa parar o comando antigo (basta usar um CTRL-C no terminal) e rodar o comando `npm run start` para efetuar as mudanças.
 
@@ -294,10 +300,10 @@ onde:
 -   `-p 3001:3001`: redireciona a porta 3001 do container para sua máquina.
 -   `micro-livraria/shipping`: especifica qual a imagem deve-se executar.
 
-Se tudo estiver correto, você irá receber a seguinte mensagem em seu terminal: 
+Se tudo estiver correto, você irá receber a seguinte mensagem em seu terminal:
 
 ```
-Shipping Service running 
+Shipping Service running
 ```
 
 E o Controller pode acessar o serviço diretamente através do container Docker.
