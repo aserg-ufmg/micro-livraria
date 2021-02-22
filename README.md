@@ -15,8 +15,8 @@ No restante deste documento vamos:
 -   Descrever o sistema, com foco na sua arquitetura.
 -   Apresentar instruções para sua execução local, usando o código disponibilizado no repositório.
 -   Descrever duas tarefas práticas para serem realizadas pelos alunos, as quais envolvem: 
-    * Tarefa #1: Implementação de uma nova operação em um dos microsserviços
-    * Tarefa #2: Criação de containers Docker para facilitar a execução dos microsserviços.
+    * Tarefa Prática #1: Implementação de uma nova operação em um dos microsserviços
+    * Tarefa Prática #2: Criação de containers Docker para facilitar a execução dos microsserviços.
 
 ## Arquitetura
 
@@ -35,7 +35,9 @@ Para facilitar a execução e entendimento do sistema, também não usamos banco
 
 ## Protocolos de Comunicação
 
-Como ilustrado no diagrama a seguir, a comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web. Já a comunicação entre o Controller e os microsserviços do back-end é baseada em [gRPC](https://grpc.io/).
+Como ilustrado no diagrama a seguir, a comunicação entre o front-end e o backend usa uma **API REST**, como é comum no caso de sistemas Web. 
+
+Já a comunicação entre o Controller e os microsserviços do back-end é baseada em [gRPC](https://grpc.io/).
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/108454750-bc2b4c80-724b-11eb-82e5-717b8b5c5a88.png" />
@@ -57,7 +59,7 @@ Especificamente, no caso de gRPC, a implementação desses dois conceitos ganhou
 Quando trabalhamos com gRPC, cada microserviço possui um arquivo `.proto` que define a assinatura das operações que ele disponibiliza para os outros microsserviços.
 Neste mesmo arquivo, declaramos também os tipos dos parâmetros de entrada e saída dessas operações.
 
-O exemplo a seguir mostra o arquivo `. proto` do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `Get`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado um outro objeto (`ShippingResponse`) com o valor do frete.
+O exemplo a seguir mostra o arquivo [.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/shipping.proto) do nosso microsserviço de frete. Nele, definimos que esse microsserviço disponibiliza uma função `GetShippingRate`. Para chamar essa função devemos passar como parâmetro de entrada um objeto contendo o CEP (`ShippingPayLoad`). Após sua execução, a função retorna como resultado um outro objeto (`ShippingResponse`) com o valor do frete.
 
 <p align="center">
     <img width="50%" src="https://user-images.githubusercontent.com/7620947/108301755-6a1df480-7181-11eb-9112-c65a0efd5602.png" />
@@ -106,11 +108,11 @@ curl -i -X GET http://localhost:3000/products
 
 Nesta primeira tarefa, você irá implementar uma nova operação no serviço `Inventory`. Essa operação, chamada `SearchProductByID` vai pesquisar por um produto, dado o seu ID.
 
-Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `proto`, no caso [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
+Como descrito anteriormente, as assinaturas das operações de cada microsserviço são definidas em um arquivo `.proto`, no caso [proto/inventory.proto](https://github.com/aserg-ufmg/micro-livraria/blob/main/proto/inventory.proto).
 
 #### Passo 1:
 
-Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assinatura no referido arquivo `proto` (na linha logo após a assinatura da função `SearchAllProducts`):
+Primeiro, você deve declarar a assinatura da nova operação. Para isso, inclua a definição dessa assinatura no referido arquivo `.proto` (na linha logo após a assinatura da função `SearchAllProducts`):
 
 ```proto
 service InventoryService {
@@ -154,9 +156,13 @@ message ProductResponse {
 
 #### Passo 3:
 
-Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
+Agora você deve implementar a função `SearchProductByID` no arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
 
-Para isso, você precisa criar uma função que é definida no segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). Semelhante ao método `searchAllProducts`, que já está implementando, você deve adicionar o corpo da função `searchProductByID` que contém a lógica de filtragem de produtos por ID, este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
+Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. Então, agora, vamos prover uma implementação para ela.
+
+Para isso, você precisa implementar a função requerida pelo segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js). 
+
+Semelhante à função `searchAllProducts`, que já está implementando, você deve adicionar o corpo da função `searchProductByID` que contém a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
 
 ```js
     searchProductByID: (payload, callback) => {
