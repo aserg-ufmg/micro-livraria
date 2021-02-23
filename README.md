@@ -220,6 +220,12 @@ Para ficar claro: até aqui, apenas implementamos a nova operação no backend. 
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH** (e certifique-se de que seu repositório no GitHub foi atualizado; isso é fundamental para seu trabalho ser devidamente corrigido).
 
+```bash
+git add --all
+git commit -m "Tarefa prática #1 - Microservices"
+git push origin main
+```
+
 ## Tarefa Prática #2: Criando um Container Docker
 
 Nesta segunda tarefa, você irá criar um container Docker para o seu microserviço. Os containers são importantes para isolar e distribuir os microserviços em ambientes de produção. Em outras palavras, um vez "copiado" para um container, um microsserviço pode ser executado em qualquer ambiente, seja ele sua máquina local, o servidor de sua universidade, ou um sistema de cloud (como Amazon AWS, Google Cloud, etc).
@@ -316,6 +322,12 @@ E o Controller pode acessar o serviço diretamente através do container Docker.
 **Mas qual foi exatamente a vantagem de criar esse container?** Agora, você pode levá-lo para qualquer máquina ou sistema operacional e colocar o microsserviço para rodar sem instalar mais nada (incluindo bibliotecas, dependências externas, módulos de runtime, etc). Isso vai ocorrer com containers implementados em JavaScript, como no nosso exemplo, mas também com containers implementados em qualquer outra linguagem.
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH** (e certifique-se de que seu repositório no GitHub foi atualizado; isso é fundamental para seu trabalho ser devidamente corrigido).
+
+```bash
+git add --all
+git commit -m "Tarefa prática #2 - Docker"
+git push origin main
+```
 
 # Para Saber Mais
 
