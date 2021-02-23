@@ -73,28 +73,30 @@ A seguir vamos descrever a sequência de passos para você executar o sistema lo
 
 **IMPORTANTE:** Você deve seguir esses passos antes de implementar as tarefas práticas descritas nas próximas seções.
 
-1. Faça um fork do [repositório](https://github.com/aserg-ufmg/micro-livraria) no GitHub e clone o projeto através do terminal, lembre-se de incluir o seu usuário na URL antes de executar:
+1. Faça um fork do repositório. Para isso, basta clicar no botão **Fork** no canto superior direito desta página.
+
+2. Vá para o terminal do seu sistema operacional e clone o projeto (lembre-se de incluir o seu usuário GitHub na URL antes de executar)
 
 ```
 git clone https://github.com/<SEU USUÁRIO>/micro-livraria.git
 ```
 
-2. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
+3. É também necessário ter o Node.js instalado na sua máquina. Se você não tem, siga as instruções para instalação contidas nessa [página](https://nodejs.org/en/download/).
 
-3. Em um terminal, vá para o diretório no qual o projeto foi clonado e instale as dependências necessárias para execução dos microsserviços:
+4. Em um terminal, vá para o diretório no qual o projeto foi clonado e instale as dependências necessárias para execução dos microsserviços:
 
 ```
 cd micro-livraria
 npm install
 ```
 
-4. Inicie os microsserviços através do comando:
+5. Inicie os microsserviços através do comando:
 
 ```
 npm run start
 ```
 
-5.  Para fins de teste, efetue uma requisição para o microsserviço reponsável pela API do backend.
+6.  Para fins de teste, efetue uma requisição para o microsserviço reponsável pela API do backend.
 
 -   Se tiver o `curl` instalado na sua máquina, basta usar:
 
@@ -104,7 +106,7 @@ curl -i -X GET http://localhost:3000/products
 
 -   Caso contrário, você pode fazer uma requisição acessando, no seu navegador, a seguinte URL: `http://localhost:3000/products`.
 
-6. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
+7. Teste agora o sistema como um todo, abrindo o front-end em um navegador: http://localhost:5000. Faça então um teste das principais funcionalidades da livraria.
 
 ## Tarefa Prática #1: Implementando uma Nova Operação
 
