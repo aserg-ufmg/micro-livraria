@@ -317,6 +317,10 @@ E o Controller pode acessar o serviço diretamente através do container Docker.
 
 **IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH** (e certifique-se de que seu repositório no GitHub foi atualizado; isso é fundamental para seu trabalho ser devidamente corrigido).
 
+# Para Saber Mais
+
+Se quiser estudar um outro sistema de demonstração de microsserviços, sugerimos este [repositório](https://github.com/GoogleCloudPlatform/microservices-demo), mantido pelo serviço de nuvem do Google.
+
 # Créditos
 
 Este exercício prático, incluindo o seu código, foi elaborado por Rodrigo Brito, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, cursada em 2020/2, sob orientação do Prof. Marco Tulio Valente.
