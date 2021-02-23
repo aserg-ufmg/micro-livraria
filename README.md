@@ -218,7 +218,7 @@ Finalize, efetuando uma chamada no novo endpoint da API: http://localhost:3000/p
 
 Para ficar claro: até aqui, apenas implementamos a nova operação no backend. A sua incorporação no frontend ficará pendente, pois requer mudar a interface Web, para, por exemplo, incluir um botão "Pesquisar Livro".
 
-**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
+**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH** (e certifique-se de que seu repositório no GitHib foi atualizado).
 
 ## Tarefa Prática #2: Criando um Container Docker
 
@@ -315,7 +315,7 @@ E o Controller pode acessar o serviço diretamente através do container Docker.
 
 **Mas qual foi exatamente a vantagem de criar esse container?** Agora, você pode levá-lo para qualquer máquina ou sistema operacional e colocar o microsserviço para rodar sem instalar mais nada (incluindo bibliotecas, dependências externas, módulos de runtime, etc). Isso vai ocorrer com containers implementados em JavaScript, como no nosso exemplo, mas também com containers implementados em qualquer outra linguagem.
 
-**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH**
+**IMPORTANTE**: Se tudo funcionou corretamente, dê um **COMMIT & PUSH** (e certifique-se de que seu repositório no GitHib foi atualizado).
 
 # Créditos
 
