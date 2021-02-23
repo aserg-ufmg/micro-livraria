@@ -1,4 +1,4 @@
-# Micro-Livraria - Aula Prática sobre Microsserviços
+# Micro-Livraria: Aula Prática sobre Microsserviços
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
