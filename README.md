@@ -335,9 +335,9 @@ git push origin main
 
 Nesta aula, trabalhamos em uma aplicação baseada em microsserviços. Apesar de pequena, ela ilustra os princípios básicos de microsserviços, bem como algumas tecnologias importantes quando se implementa esse tipo de arquitetura.
 
-No entanto, é importante ressaltar que em uma aplicação real existem outros componentes, como bancos de dados, balanceadores de cargas e orquestradores. 
+No entanto, é importante ressaltar que em uma aplicação real existem outros componentes, como bancos de dados, balanceadores de carga e orquestradores. 
 
-A função de um **balanceador de cargas** é dividir as requisições quando temos mais de uma instância do mesmo microsserviço. Imagine que o microsserviço de frete da loja virtual ficou sobrecarregado e, então, tivemos que colocamos para rodar múltiplas instâncias do mesmo. Nesse caso, precisamos de um balanceador para despachar as requisições que chegam entre essas instâncias. 
+A função de um **balanceador de carga** é dividir as requisições quando temos mais de uma instância do mesmo microsserviço. Imagine que o microsserviço de frete da loja virtual ficou sobrecarregado e, então, tivemos que colocamos para rodar múltiplas instâncias do mesmo. Nesse caso, precisamos de um balanceador para despachar as requisições que chegam entre essas instâncias. 
 
 Já um **orquestrador** gerencia o ciclo de vidas de containers. Por exemplo, se um servidor para de funcionar, ele automaticamente move os seus containers para um outro servidor. Se o número de acessos ao sistema aumenta bruscamente, um orquestrador também aumenta, em seguida, o número de containers. [Kubernetes](https://kubernetes.io/) é um dos orquestradores mais usados atualmente.
 
