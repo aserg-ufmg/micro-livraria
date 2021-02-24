@@ -331,7 +331,11 @@ git commit -m "Tarefa prática #2 - Docker"
 git push origin main
 ```
 
-# Para Saber Mais
+# Comentários Finais
+
+Nesta aula, executamos e adicionamos uma operação em uma pequena aplicação baseada em microsserviços. Apesar de pequena, ela ilustra os princípios básicos de microsserviços, bem como algumas tecnologias importantes quando se parte para implementar esse tipo de arquitetura.
+
+No entanto, é importante ressaltar que em uma aplicação real existem novos componentes, como bancos de dados, balanceadores de cargas e orquestradores. O nosso exemplo contém apenas uma instância de cada serviço, no entanto, caso seja necessário prover escalabilidade, outras tecnologias como Kubernetes devem ser adotadas.
 
 Se quiser estudar um outro sistema de demonstração de microsserviços, sugerimos este [repositório](https://github.com/GoogleCloudPlatform/microservices-demo), mantido pelo serviço de nuvem do Google.
 
