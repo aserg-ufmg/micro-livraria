@@ -1,4 +1,4 @@
-# Micro-Livraria: Programa de Demonstração de Microsserviços
+# Micro-Livraria: Exemplo Prático de Microsserviços
 
 Este repositório contem um exemplo simples de uma livraria virtual construída usando uma **arquitetura de microsserviços**.
 
