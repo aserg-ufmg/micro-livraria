@@ -335,7 +335,11 @@ git push origin main
 
 Nesta aula, executamos e adicionamos uma operação em uma pequena aplicação baseada em microsserviços. Apesar de pequena, ela ilustra os princípios básicos de microsserviços, bem como algumas tecnologias importantes quando se parte para implementar esse tipo de arquitetura.
 
-No entanto, é importante ressaltar que em uma aplicação real existem novos componentes, como bancos de dados, balanceadores de cargas e orquestradores. O nosso exemplo contém apenas uma instância de cada serviço, no entanto, caso seja necessário prover escalabilidade, outras tecnologias como Kubernetes devem ser adotadas.
+No entanto, é importante ressaltar que em uma aplicação real existem novos componentes, como bancos de dados, balanceadores de cargas e orquestradores. 
+
+Um **balanceador de cargas** divide as requisições quando temos mais de uma instância do mesmo microsserviço. Imagine que o microsserviço de frete da loja virtual ficou sobrecarregado e, então, colocamos para rodar múltiplas instâncias do mesmo. Nesse caso, precisamos de um balanceador para despachar as requisições que chegam entre essas instâncias. 
+
+Já um **orquestrador** gerencia o ciclo de vidas de containers. Por exemplo, se uma máquina para de funcionar, ele automaticamente move os seus containers para uma nova máquina. Se o número de acessos ao sistema aumenta bruscamente, ele também aumenta automaticanente o número de containers. [Kubernetes](https://kubernetes.io/) é um dos orquestradores mais usados atualmente.
 
 Se quiser estudar um outro sistema de demonstração de microsserviços, sugerimos este [repositório](https://github.com/GoogleCloudPlatform/microservices-demo), mantido pelo serviço de nuvem do Google.
 
