@@ -170,10 +170,10 @@ Reforçando, no passo anterior, apenas declaramos a assinatura dessa função. E
 
 Para isso, você precisa implementar a função requerida pelo segundo parâmetro da função `server.addService`, localizada na linha 17 do arquivo [services/inventory/index.js](https://github.com/aserg-ufmg/micro-livraria/blob/main/services/inventory/index.js).
 
-De forma semelhante à função `searchAllProducts`, que já está implementada, você deve adicionar o corpo da função `searchProductByID` com a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `searchAllProducts` na linha 23.
+De forma semelhante à função `SearchAllProducts`, que já está implementada, você deve adicionar o corpo da função `SearchProductByID` com a lógica de pesquisa de produtos por ID. Este código deve ser adicionado logo após o `SearchAllProducts` na linha 23.
 
 ```js
-    searchProductByID: (payload, callback) => {
+    SearchProductByID: (payload, callback) => {
         callback(
             null,
             products.find((product) => product.id == payload.request.id)
@@ -293,10 +293,23 @@ O `./` no final indica que estamos executando os comandos do Dockerfile tendo co
 
 #### Passo 3
 
-Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta deletar a seguinte linha do arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json) (isto é, linha 9):
+Antes de iniciar o serviço via container Docker, precisamos remover a inicialização do serviço de Shipping do comando `npm run start`. Para isso, basta remover o sub-comando `start-shipping` localizado na linha 7 d arquivo [package.json](https://github.com/aserg-ufmg/micro-livraria/blob/main/package.json):
 
-```
-"start-shipping": "nodemon services/shipping/index.js",
+```diff
+diff --git a/package.json b/package.json
+index 25ff65c..552a04e 100644
+--- a/package.json
++++ b/package.json
+@@ -4,7 +4,7 @@
+     "description": "Toy example of microservice",
+     "main": "",
+     "scripts": {
+-        "start": "run-p start-frontend start-controller start-shipping start-inventory",
++        "start": "run-p start-frontend start-controller start-inventory",
+         "start-controller": "nodemon services/controller/index.js",
+         "start-shipping": "nodemon services/shipping/index.js",
+         "start-inventory": "nodemon services/inventory/index.js",
+
 ```
 
 Em seguida, você precisa parar o comando antigo (basta usar um CTRL-C no terminal) e rodar o comando `npm run start` para efetuar as mudanças.
@@ -337,9 +350,9 @@ git push origin main
 
 Nesta aula, trabalhamos em uma aplicação baseada em microsserviços. Apesar de pequena, ela ilustra os princípios básicos de microsserviços, bem como algumas tecnologias importantes quando se implementa esse tipo de arquitetura.
 
-No entanto, é importante ressaltar que em uma aplicação real existem outros componentes, como bancos de dados, balanceadores de carga e orquestradores. 
+No entanto, é importante ressaltar que em uma aplicação real existem outros componentes, como bancos de dados, balanceadores de carga e orquestradores.
 
-A função de um **balanceador de carga** é dividir as requisições quando temos mais de uma instância do mesmo microsserviço. Imagine que o microsserviço de frete da loja virtual ficou sobrecarregado e, então, tivemos que colocar para rodar múltiplas instâncias do mesmo. Nesse caso, precisamos de um balanceador para dividir as requisições que chegam entre essas instâncias. 
+A função de um **balanceador de carga** é dividir as requisições quando temos mais de uma instância do mesmo microsserviço. Imagine que o microsserviço de frete da loja virtual ficou sobrecarregado e, então, tivemos que colocar para rodar múltiplas instâncias do mesmo. Nesse caso, precisamos de um balanceador para dividir as requisições que chegam entre essas instâncias.
 
 Já um **orquestrador** gerencia o ciclo de vida de containers. Por exemplo, se um servidor para de funcionar, ele automaticamente move os seus containers para um outro servidor. Se o número de acessos ao sistema aumenta bruscamente, um orquestrador também aumenta, em seguida, o número de containers. [Kubernetes](https://kubernetes.io/) é um dos orquestradores mais usados atualmente.
 
