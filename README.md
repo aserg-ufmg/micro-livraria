@@ -348,7 +348,7 @@ git commit -m "Tarefa prática #2 - Docker"
 git push origin main
 ```
 
-# Comentários Finais
+## Comentários Finais
 
 Nesta aula, trabalhamos em uma aplicação baseada em microsserviços. Apesar de pequena, ela ilustra os princípios básicos de microsserviços, bem como algumas tecnologias importantes quando se implementa esse tipo de arquitetura.
 
@@ -360,6 +360,6 @@ Já um **orquestrador** gerencia o ciclo de vida de containers. Por exemplo, se 
 
 Se quiser estudar um segundo sistema de demonstração de microsserviços, sugerimos este [repositório](https://github.com/GoogleCloudPlatform/microservices-demo), mantido pelo serviço de nuvem do Google.
 
-# Créditos
+## Créditos
 
 Este exercício prático, incluindo o seu código, foi elaborado por **Rodrigo Brito**, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, cursada em 2020/2, sob orientação do **Prof. Marco Tulio Valente**.
