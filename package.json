@@ -1,5 +1,5 @@
 {
-    "name": "shop-microservices",
+    "name": "micro-livraria",
     "version": "1.0.0",
     "description": "Toy example of microservice",
     "main": "",
@@ -8,28 +8,32 @@
         "start-controller": "nodemon services/controller/index.js",
         "start-shipping": "nodemon services/shipping/index.js",
         "start-inventory": "nodemon services/inventory/index.js",
-        "start-frontend": "serve services/frontend"
+        "start-frontend": "serve services/frontend",
+        "exec": "run-p start-frontend exec-controller exec-shipping exec-inventory",
+        "exec-controller": "node services/controller/index.js",
+        "exec-shipping": "node services/shipping/index.js",
+        "exec-inventory": "node services/inventory/index.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/rodrigo-brito/shop-microservice.git"
+        "url": "git+https://github.com/aserg-ufmg/micro-livraria.git"
     },
     "author": "Rodrigo",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/rodrigo-brito/shop-microservice/issues"
+        "url": "https://github.com/aserg-ufmg/micro-livraria/issues"
     },
-    "homepage": "https://github.com/rodrigo-brito/shop-microservice#readme",
+    "homepage": "https://github.com/aserg-ufmg/micro-livraria#readme",
     "dependencies": {
         "@grpc/grpc-js": "^1.2.6",
         "@grpc/proto-loader": "^0.5.6",
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "google-protobuf": "^3.15.0-rc.1",
-        "grpc": "^1.24.4",
-        "serve": "^11.3.2"
+        "grpc": "^1.24.4"
     },
     "devDependencies": {
+        "serve": "^12.0.0",
         "nodemon": "^2.0.7",
         "npm-run-all": "^4.1.5"
     }

@@ -46,5 +46,5 @@ app.get('/shipping/:cep', (req, res, next) => {
  * Inicia o router
  */
 app.listen(3000, () => {
-    console.log('Controller Service running on http://localhost:3000');
+    console.log('Controller Service running on http://127.0.0.1:3000');
 });
