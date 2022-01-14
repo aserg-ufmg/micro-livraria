@@ -279,7 +279,7 @@ CMD ["node", "/app/services/shipping/index.js"]
 
 #### Passo 2
 
-Agora nós vamos compilar o Dockerfile e criar a imagem. Para isto, execute o seguinte comando em um terminal do seu sistema operacional (esse comando precisa ser executado na raiz do projeto).
+Agora nós vamos compilar o Dockerfile e criar a imagem. Para isto, execute o seguinte comando em um terminal do seu sistema operacional (esse comando precisa ser executado na raiz do projeto; ele pode também demorar um pouco mais para ser executado).
 
 ```
 docker build -t micro-livraria/shipping -f shipping.Dockerfile ./
