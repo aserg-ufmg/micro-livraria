@@ -15,6 +15,10 @@ message ProductResponse {
     string author = 6;
 }
 
+message Payload {
+    int32 id = 1;
+}
+
 message ProductsResponse {
     repeated ProductResponse products = 1;
 }
