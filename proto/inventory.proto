@@ -4,6 +4,11 @@ service InventoryService {
     rpc SearchAllProducts(Empty) returns (ProductsResponse) {}
 }
 
+service InventoryService {
+    rpc SearchAllProducts(Empty) returns (ProductsResponse) {}
+    rpc SearchProductByID(Payload) returns (ProductResponse) {}
+}
+
 message Empty{}
 
 message ProductResponse {
