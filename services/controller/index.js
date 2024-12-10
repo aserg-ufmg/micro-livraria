@@ -42,6 +42,20 @@ app.get('/shipping/:cep', (req, res, next) => {
     );
 });
 
+app.get('/product/:id', (req, res, next) => {
+    inventory.SearchProductByID({ id: req.params.id }, (err, product) => {
+
+        if (err) {
+            //se der erro
+            console.error(err);
+            res.status(500).send({ error: 'something failed :c' });
+        } else {
+            //senão, retorna o Json
+            res.json(product);
+        }
+    });
+});
+
 /**
  * Inicia o router
  */
