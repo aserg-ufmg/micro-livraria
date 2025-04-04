@@ -102,7 +102,7 @@ npm install
 npm run start
 ```
 
-6.  Para fins de teste, efetue uma requisição para o microsserviço reponsável pela API do backend.
+6.  Para fins de teste, efetue uma requisição para o microsserviço responsável pela API do backend.
 
 -   Se tiver o `curl` instalado na sua máquina, basta usar:
 
@@ -238,7 +238,7 @@ Nesta segunda tarefa, você irá criar um container Docker para o seu microservi
 
 Como nosso primeiro objetivo é didático, iremos criar apenas uma imagem Docker para exemplificar o uso de containers.
 
-Caso você não tenha o Docker instaldo em sua máquina, é preciso instalá-lo antes de iniciar a tarefa. Um passo-a-passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/).
+Caso você não tenha o Docker instalado em sua máquina, é preciso instalá-lo antes de iniciar a tarefa. Um passo-a-passo de instalação pode ser encontrado na [documentação oficial](https://docs.docker.com/get-docker/).
 
 #### Passo 1
 
@@ -347,6 +347,39 @@ git add --all
 git commit -m "Tarefa prática #2 - Docker"
 git push origin main
 ```
+
+#### Passo 4
+
+Como tudo funcionou corretamente, já podemos encerrar o container e limpar nosso ambiente. Para isso, utilizaremos os seguintes comandos:
+
+```
+docker stop shipping
+```
+
+onde:
+
+-   `docker stop`: comando para interromper a execução de um container.
+-   `shipping`: nome do container que será interrompido.
+
+
+```
+docker rm shipping
+```
+
+onde:
+
+-   `docker rm`: comando para remover um container.
+-   `shipping`: nome do container que será removido.
+
+
+```
+docker rmi micro-livraria/shipping
+```
+
+onde:
+
+-   `docker rmi`: comando para remover uma imagem.
+-   `micro-livraria/shipping`: nome da imagem que será removida.
 
 ## Comentários Finais
 
