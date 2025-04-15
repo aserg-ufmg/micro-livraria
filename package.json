@@ -1,12 +1,12 @@
 {
     "name": "micro-livraria",
     "version": "1.0.0",
-    "description": "Toy example of microservice",
+    "description": "Toy example     of microservice",
     "main": "",
     "scripts": {
-        "start": "run-p start-frontend start-controller start-shipping start-inventory",
+        "start": "run-p start-frontend start-controller start-inventory",
         "start-controller": "nodemon services/controller/index.js",
-        "start-shipping": "nodemon services/shipping/index.js",
+            "start-shipping": "nodemon services/shipping/index.js",
         "start-inventory": "nodemon services/inventory/index.js",
         "start-frontend": "serve -p 5000 services/frontend",
         "exec": "run-p start-frontend exec-controller exec-shipping exec-inventory",
